@@ -1,8 +1,6 @@
 # Montreal Mynix Athletic Club
 ### Non-profit Organization
 MMAC was officially incorporated in August 2002. Its sole purpose is to encourage culture preservation of its city’s Asian community through sports.
-<<<<<<< HEAD
-=======
 
 ## Infrastructure
 ![Env drawio (1)](https://github.com/mmac-club/portal/assets/99679597/4464ea71-b57e-4e07-ad3b-f0ad3f61828a)
@@ -23,4 +21,3 @@ MMAC was officially incorporated in August 2002. Its sole purpose is to encourag
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
->>>>>>> 661d69f549d46b9147a15391a13acaacc59b1017

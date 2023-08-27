@@ -29,9 +29,6 @@ export default function SignUp() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      console.log(email);
-      console.log(password);
-
       signup(email, password);
       console.log("User created")
     } catch (error) {

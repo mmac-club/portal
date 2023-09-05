@@ -13,15 +13,21 @@ export function useAuth() {
 // eslint-disable-next-line react/prop-types
 export function AuthProvider({ children }){
     const [currentUser, setCurrentUser] = useState()
+    const [loading, setLoading] = useState(true)
     
-    function signup(email, password){
+    async function signup(user) {
+        console.log(user)
         const authInstance = getAuth(); // Get the authentication instance
-        return createUserWithEmailAndPassword(authInstance, email, password);
+        // Create the user
+        const userCredential = await createUserWithEmailAndPassword(authInstance, user.email, user.password);
+        return userCredential;
     }
+
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             setCurrentUser(user)
+            setLoading(false)
         })
         return unsubscribe
     }, [])
@@ -33,7 +39,7 @@ export function AuthProvider({ children }){
 
     return(
         <AuthContext.Provider value={value}>
-            {children}
+            {!loading && children}
         </AuthContext.Provider>
     )
 }

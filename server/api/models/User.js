@@ -14,6 +14,18 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true 
     },
+    dateOfBirth: {
+        type: Date,
+    },
+    gender: {
+        type: String
+    },
+    phoneNumber: {
+        type: Number
+    },
+    postalCode: {
+        type: String,
+    },
     isAdmin: {
         type: Boolean,
         default: false

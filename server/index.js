@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 
 // middlewares
 app.use(express.json())
-app.use("/user", userRoute)
+app.use("/users", userRoute)
 
 // Start the server
 app.listen(port, () => {

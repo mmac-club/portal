@@ -38,6 +38,7 @@ export default function SignUp() {
     postalCode: "",
     confirmPassword: "",
   });
+  
   function handleInputChange(e) {
     const { name, value } = e.target;
     setUser({
@@ -45,27 +46,16 @@ export default function SignUp() {
       [name]: value,
     });
   }
-  async function getCurrentUser() {
-    // Replace this with your logic to get the current user from your authentication system
-    // For example, using Firebase Authentication: firebase.auth().currentUser
-    // Make sure to handle user authentication in your app properly.
-    return { uid: "sampleUserId" }; // Replace with your actual user data
-  }
 
-  // This is a sample function to create a user profile in Firebase (replace with your Firebase logic)
-  async function createProfile(user, userData) {
-    // Replace this with your logic to create a user profile in Firebase Realtime Database or Firestore
-    // Example using Firebase Realtime Database:
-    // const userProfileRef = firebase.database().ref('users/' + user.uid);
-    // await userProfileRef.set(userData);
+    async function createProfile(user, currentUser) {
 
-    // Example using Firebase Firestore:
-    // const userProfileRef = firebase.firestore().collection('users').doc(user.uid);
-    // await userProfileRef.set(userData);
-
+    const userProfile =  currentUser
+    userProfile.phoneNumber = user.phoneNumber
+    console.log(userProfile.phoneNumber)
+    console.log(userProfile)
     console.log("User profile created");
   }
-
+  
   async function handleSubmit(e) {
     e.preventDefault();
     const {
@@ -81,23 +71,23 @@ export default function SignUp() {
     } = user;
     setError("THis is error");
     setLoading(true);
+
     try {
+      await createProfile(user, currentUser)
+
       console.log("user:", user);
-      await signup(
-        user.email,
-        user.password
-      );
+      await signup(user);
       // After the user signs up, get the current user
-      const user = await getCurrentUser();
+      // await getCurrentUserInfo(currentUser);
 
       // Create a user profile in Firebase with the collected phone number
-      await createProfile(user, {
-        firstName,
-        lastName,
-        dateOfBirth,
-        gender,
-        phoneNumber,
-      });
+      // await createProfile(user, {
+      //   firstName,
+      //   lastName,
+      //   dateOfBirth,
+      //   gender,
+      //   phoneNumber,
+      // });
       console.log("User created");
     } catch (error) {
       console.log("Error" + error);

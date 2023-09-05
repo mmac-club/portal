@@ -23,7 +23,7 @@ export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const { signup } = useAuth(); // Ensure that useAuth() is providing the signup function
+  const { signup, currentUser } = useAuth(); // Ensure that useAuth() is providing the signup function
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -45,6 +45,26 @@ export default function SignUp() {
       [name]: value,
     });
   }
+  async function getCurrentUser() {
+    // Replace this with your logic to get the current user from your authentication system
+    // For example, using Firebase Authentication: firebase.auth().currentUser
+    // Make sure to handle user authentication in your app properly.
+    return { uid: "sampleUserId" }; // Replace with your actual user data
+  }
+
+  // This is a sample function to create a user profile in Firebase (replace with your Firebase logic)
+  async function createProfile(user, userData) {
+    // Replace this with your logic to create a user profile in Firebase Realtime Database or Firestore
+    // Example using Firebase Realtime Database:
+    // const userProfileRef = firebase.database().ref('users/' + user.uid);
+    // await userProfileRef.set(userData);
+
+    // Example using Firebase Firestore:
+    // const userProfileRef = firebase.firestore().collection('users').doc(user.uid);
+    // await userProfileRef.set(userData);
+
+    console.log("User profile created");
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -63,7 +83,21 @@ export default function SignUp() {
     setLoading(true);
     try {
       console.log("user:", user);
-      await signup(user.email, user.password);
+      await signup(
+        user.email,
+        user.password
+      );
+      // After the user signs up, get the current user
+      const user = await getCurrentUser();
+
+      // Create a user profile in Firebase with the collected phone number
+      await createProfile(user, {
+        firstName,
+        lastName,
+        dateOfBirth,
+        gender,
+        phoneNumber,
+      });
       console.log("User created");
     } catch (error) {
       console.log("Error" + error);
@@ -90,6 +124,7 @@ export default function SignUp() {
           boxShadow={"2xl"}
           p={8}
         >
+          {JSON.stringify(currentUser)}
           {/* Error box */}
           {error && (
             <Box

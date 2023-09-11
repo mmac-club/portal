@@ -18,9 +18,11 @@ import {
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useAuth } from "../contexts/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function SignIn() {
+  const { login } = useAuth() // Ensure that useAuth() is providing the signup function
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
 
   // const { signup, currentUser } = useAuth(); // Ensure that useAuth() is providing the signup function
@@ -43,12 +45,15 @@ export default function SignIn() {
   async function handleSubmit(e) {
     e.preventDefault();
     const { email, password } = user;
-    setError("THis is error");
-    setLoading(true);
+
 
     try {
+      setError("THis is error");
+      setLoading(true);
+      await login(user)
+      navigate("/")
       // LOG IN Logic
-      console.log("User created");
+      console.log("User login successful");
     } catch (error) {
       console.log("Error" + error);
     }

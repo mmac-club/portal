@@ -38,7 +38,7 @@ export default function SignUp() {
     postalCode: "",
     confirmPassword: "",
   });
-  
+
   function handleInputChange(e) {
     const { name, value } = e.target;
     setUser({

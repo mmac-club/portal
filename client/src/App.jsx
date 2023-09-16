@@ -7,14 +7,14 @@ import {
 import RootLayout from "./layouts/RootLayout";
 import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
-import SignUp from "./pages/Signup";
+import SignUp from "./pages/SignUp";
 import LeagueRegistration from "./pages/LeagueRegistration";
 import PrivateRoute from "./components/PrivateRoute";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
-      <Route path="/" element={<PrivateRoute component={Dashboard} />} />
+      <Route path="/" element={<PrivateRoute component={Dashboard}/>} />
       <Route path="signup" element={<SignUp></SignUp>}></Route>
       <Route path="signin" element={<SignIn></SignIn>}></Route>
       <Route

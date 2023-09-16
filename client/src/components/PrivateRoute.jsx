@@ -1,6 +1,6 @@
 // PrivateRoute.jsx
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 function PrivateRoute({ component: Component, ...rest }) {
@@ -8,7 +8,9 @@ function PrivateRoute({ component: Component, ...rest }) {
 
   return (
     currentUser ? (
-      <Route {...rest} element={<Component />} />
+      <Routes>
+        <Route {...rest} element={<Component />} />
+      </Routes>
     ) : (
       <Navigate to="/signin" />
     )

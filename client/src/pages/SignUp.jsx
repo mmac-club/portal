@@ -46,15 +46,6 @@ export default function SignUp() {
       [name]: value,
     });
   }
-
-    async function createProfile(user, currentUser) {
-
-    const userProfile =  currentUser
-    userProfile.phoneNumber = user.phoneNumber
-    console.log(userProfile.phoneNumber)
-    console.log(userProfile)
-    console.log("User profile created");
-  }
   
   async function handleSubmit(e) {
     e.preventDefault();
@@ -73,21 +64,7 @@ export default function SignUp() {
     setLoading(true);
 
     try {
-      await createProfile(user, currentUser)
-
-      console.log("user:", user);
       await signup(user);
-      // After the user signs up, get the current user
-      // await getCurrentUserInfo(currentUser);
-
-      // Create a user profile in Firebase with the collected phone number
-      // await createProfile(user, {
-      //   firstName,
-      //   lastName,
-      //   dateOfBirth,
-      //   gender,
-      //   phoneNumber,
-      // });
       console.log("User created");
     } catch (error) {
       console.log("Error" + error);

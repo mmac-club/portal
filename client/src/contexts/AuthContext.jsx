@@ -16,10 +16,9 @@ export function AuthProvider({ children }){
     const [loading, setLoading] = useState(true)
     
     async function signup(user) {
-        console.log(user)
         const authInstance = getAuth(); // Get the authentication instance
-        // Create the user
         const userCredential = await createUserWithEmailAndPassword(authInstance, user.email, user.password);
+        console.log("Sign Up Successful")
         return userCredential;
     }
 

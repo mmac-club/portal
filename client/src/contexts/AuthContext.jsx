@@ -46,3 +46,11 @@ export async function googleAuthenicator() {
         console.error(err);
     }
 }
+
+export async function facebookAuthenticator() {
+    try {
+        console.log("Logging with Facebook");
+    } catch (err) {
+        console.error(err);
+    }
+}

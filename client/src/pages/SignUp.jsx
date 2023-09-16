@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { useAuth, googleAuthenicator } from "../contexts/AuthContext";
+import { useAuth, googleAuthenicator, facebookAuthenticator } from "../contexts/AuthContext";
 import { FaGoogle, FaFacebook } from 'react-icons/fa';
 
 export default function SignUp() {
@@ -113,6 +113,7 @@ export default function SignUp() {
 
   const handleFacebookSignin = async () => {
     console.log("Singing in with Facebook");
+    await facebookAuthenticator();
   }
 
 
@@ -326,7 +327,7 @@ export default function SignUp() {
                 borderRadius="full"
                 _hover={{ bg: 'blue.500', color: 'white' }}
               >
-                Sign in with Google
+                Sign in with Facebook
               </Button>
             </HStack>
             <Stack pt={6}>

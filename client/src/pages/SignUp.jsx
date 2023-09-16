@@ -17,7 +17,8 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth, googleAuthenicator } from "../contexts/AuthContext";
+import { FaGoogle, FaFacebook } from 'react-icons/fa';
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -45,12 +46,12 @@ export default function SignUp() {
       [name]: value,
     });
   }
-  async function getCurrentUser() {
-    // Replace this with your logic to get the current user from your authentication system
-    // For example, using Firebase Authentication: firebase.auth().currentUser
-    // Make sure to handle user authentication in your app properly.
-    return { uid: "sampleUserId" }; // Replace with your actual user data
-  }
+  // async function getCurrentUser() {
+  //   // Replace this with your logic to get the current user from your authentication system
+  //   // For example, using Firebase Authentication: firebase.auth().currentUser
+  //   // Make sure to handle user authentication in your app properly.
+  //   return { uid: "sampleUserId" }; // Replace with your actual user data
+  // }
 
   // This is a sample function to create a user profile in Firebase (replace with your Firebase logic)
   async function createProfile(user, userData) {
@@ -88,7 +89,7 @@ export default function SignUp() {
         user.password
       );
       // After the user signs up, get the current user
-      const user = await getCurrentUser();
+      // const user = await getCurrentUser();
 
       // Create a user profile in Firebase with the collected phone number
       await createProfile(user, {
@@ -104,6 +105,17 @@ export default function SignUp() {
     }
     setLoading(false);
   }
+
+  const handleGoogelSignin = async () => {
+    console.log("Singing In with Google");
+    await googleAuthenicator();
+  }
+
+  const handleFacebookSignin = async () => {
+    console.log("Singing in with Facebook");
+  }
+
+
   return (
     <Flex
       minH={"100vh"}
@@ -291,6 +303,32 @@ export default function SignUp() {
                 Sign up
               </Button>
             </Stack>
+            <HStack spacing={10} pt={2}>
+              <Button
+                onClick={handleGoogelSignin}
+                leftIcon={<FaGoogle />}
+                colorScheme="red"
+                variant="outline"
+                size="md"
+                fontWeight="medium"
+                borderRadius="full"
+                _hover={{ bg: 'red.500', color: 'white' }}
+              >
+                Sign in with Google
+              </Button>
+              <Button
+                onClick={handleFacebookSignin}
+                leftIcon={<FaFacebook />}
+                colorScheme="blue"
+                variant="outline"
+                size="md"
+                fontWeight="medium"
+                borderRadius="full"
+                _hover={{ bg: 'blue.500', color: 'white' }}
+              >
+                Sign in with Google
+              </Button>
+            </HStack>
             <Stack pt={6}>
               <Text align={"center"}>
                 Already a user? <Link color={"blue.400"}>Login</Link>

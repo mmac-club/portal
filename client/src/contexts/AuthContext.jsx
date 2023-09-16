@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react";
 import { auth } from "../../firebase";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 
 const AuthContext = React.createContext()
@@ -36,4 +36,13 @@ export function AuthProvider({ children }){
             {children}
         </AuthContext.Provider>
     )
+}
+
+export async function googleAuthenicator() {
+    try {
+        const response = await signInWithPopup(getAuth(),new GoogleAuthProvider());
+        console.log(response);
+    } catch (err){
+        console.error(err);
+    }
 }

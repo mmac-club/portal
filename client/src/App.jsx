@@ -13,15 +13,12 @@ import PrivateRoute from "./components/PrivateRoute";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
-      <Route path="/" element={<PrivateRoute component={Dashboard}/>} />
-      <Route path="signup" element={<SignUp></SignUp>}></Route>
-      <Route path="signin" element={<SignIn></SignIn>}></Route>
-      <Route
-        path="league-registration"
-        element={<LeagueRegistration></LeagueRegistration>}
-      ></Route>
-    </Route>
+      <Route path="/" element={<RootLayout />}>
+        <Route index element={<PrivateRoute path="/" component={Dashboard} />} />
+        <Route path="signup" element={<SignUp />} /> {/* No need for empty elements */}
+        <Route path="signin" element={<SignIn />} />
+        <Route path="league-registration" element={<LeagueRegistration />} />
+      </Route>
   )
 );
 

@@ -1,6 +1,7 @@
 import express from "express";
 import User from "../models/User.js";
 import { createUser, deleteUser, getAllUsers, getUser, updateUser } from "../controllers/user.js";
+import { registerParticipant } from "../controllers/basketball_recreational_registration.js";
 
 const router = express.Router();
 
@@ -19,4 +20,8 @@ router.get("/:id", getUser)
 // GET ALL
 router.get("/", getAllUsers)
 
+// Register for Participant
+router.get("/register-participant/:id", registerParticipant)
+
 export default router
+

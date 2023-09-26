@@ -13,10 +13,10 @@ import {
   Text,
   useColorModeValue,
   Select,
-  Link,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { Link, useNavigate } from "react-router-dom";
 import {
   useAuth,
   googleAuthenicator,
@@ -182,7 +182,7 @@ export default function SignUp() {
 
   return (
     <Flex
-      minH={"100vh"}
+      height={"calc(100vh - 70px)"}
       align={"center"}
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
@@ -410,7 +410,7 @@ export default function SignUp() {
             </HStack>
             <Stack pt={6}>
               <Text align={"center"}>
-                Already a user? <Link color={"blue.400"}>Login</Link>
+                Already a user? <Link to="/signin" style={{color: '#4299E1'}} >Login</Link>
               </Text>
             </Stack>
           </Stack>

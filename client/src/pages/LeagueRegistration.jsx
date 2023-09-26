@@ -1,75 +1,70 @@
+import {
+    Flex,
+    Box,
+    FormControl,
+    FormLabel,
+    Input,
+    InputGroup,
+    HStack,
+    InputRightElement,
+    Stack,
+    Button,
+    Heading,
+    Text,
+    useColorModeValue,
+    SimpleGrid,
+    Card,
+    CardHeader,
+    CardBody,
+    CardFooter,
+    Select,
+    Radio,
+    RadioGroup,
+  } from "@chakra-ui/react";
+
 export default function LeagueRegistration() {
     return (
         <Flex
-            minH={"100vh"}
+            minH={"calc(100vh - 70px)"}
             align={"center"}
             justify={"center"}
             bg={useColorModeValue("gray.50", "gray.800")}
             >
-            <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-                <Stack align={"center"}>
-                <Heading fontSize={"4xl"} textAlign={"center"}>
-                    Registration Form
-                </Heading>
-                </Stack>
-                <Box
-                rounded={"lg"}
-                bg={useColorModeValue("white", "gray.700")}
-                boxShadow={"2xl"}
-                p={8}
-                >
-                {/* {JSON.stringify(currentUser)} */}
-                {/* Error box */}
-                {error && (
-                    <Box
-                    bg="red.100" // Background color for the error box
-                    p={2} // Padding for the error box
-                    mb={2} // Margin bottom for spacing
-                    borderRadius="md" // Rounded corners
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    >
-                    <Text color="red.500" fontSize="md" fontWeight={"semibold"}>
-                        {error}
-                    </Text>
-                    </Box>
-                )}
-                <Stack spacing={4}>
-                    <FormControl id="email" isRequired>
-                    <FormLabel>Email address</FormLabel>
-                    <Input
-                        type="email"
-                        name="email"
-                        value={user.email}
-                        onChange={handleInputChange}
-                    />
-                    </FormControl>
-                    <FormControl id="password" isRequired>
-                    <FormLabel>Password</FormLabel>
-                    <InputGroup>
-                        <Input
-                        type={showPassword ? "text" : "password"}
-                        name="password"
-                        value={user.password}
-                        onChange={handleInputChange}
-                        />
-                        <InputRightElement h={"full"}>
-                        <Button
-                            variant={"ghost"}
-                            disabled
-                            onMouseDown={() => setShowPassword(true)}
-                            onMouseUp={() => setShowPassword(false)}
-                            onMouseLeave={() => setShowPassword(false)}
-                        >
-                            {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                        </Button>
-                        </InputRightElement>
-                    </InputGroup>
-                    </FormControl>
-                </Stack>
-                </Box>
-            </Stack>
-            </Flex>
+            <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+                <Card>
+                    <CardHeader>
+                    <Heading size='md'> Customer dashboard</Heading>
+                    </CardHeader>
+                    <CardBody>
+                    <Text>View a summary of all your customers over the last month.</Text>
+                    </CardBody>
+                    <CardFooter>
+                    <Button>View here</Button>
+                    </CardFooter>
+                </Card>
+                <Card>
+                    <CardHeader>
+                    <Heading size='md'> Customer dashboard</Heading>
+                    </CardHeader>
+                    <CardBody>
+                    <Text>View a summary of all your customers over the last month.</Text>
+                    </CardBody>
+                    <CardFooter>
+                    <Button>View here</Button>
+                    </CardFooter>
+                </Card>
+                <Card>
+                    <CardHeader>
+                    <Heading size='md'> Customer dashboard</Heading>
+                    </CardHeader>
+                    <CardBody>
+                    <Text>View a summary of all your customers over the last month.</Text>
+                    </CardBody>
+                    <CardFooter>
+                    <Button>View here</Button>
+                    </CardFooter>
+                </Card>
+                </SimpleGrid>
+        </Flex>
     )
 }

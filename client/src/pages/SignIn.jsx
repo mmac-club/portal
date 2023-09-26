@@ -24,6 +24,9 @@ export default function SignIn() {
   const { login } = useAuth() // Ensure that useAuth() is providing the signup function
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
+  const [validationErrors, setValidationErrors] = useState({}); // State to hold validation errors
+  const [validationMessageErrors, setValidationMessageErrors] = useState({});
+  const messageError = {};
 
   // const { signup, currentUser } = useAuth(); // Ensure that useAuth() is providing the signup function
 
@@ -40,25 +43,59 @@ export default function SignIn() {
       ...user,
       [name]: value,
     });
+        // Clear the validation error for this field when user starts typing again
+    setValidationErrors({
+      ...validationErrors,
+      [name]: "",
+    });
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     const { email, password } = user;
-
-
+    const errors = validateForm(user);
+    console.log(errors)
+    if (
+      Object.keys(errors).length > 0 ||
+      Object.keys(messageError).length > 0
+    ) {
+      // If there are validation errors, set them and prevent form submission
+      setValidationErrors(errors);
+      console.log(validationErrors)
+      setValidationMessageErrors(messageError);
+      return;
+    }
+    setError("");
+    setLoading(true);
     try {
-      setError("THis is error");
-      setLoading(true);
       await login(user)
       navigate("/")
-      // LOG IN Logic
       console.log("User login successful");
-    } catch (error) {
-      console.log("Error" + error);
+    } 
+    catch (error) {
+      messageError.fromFirebase = error
+      setValidationMessageErrors(messageError)
+      return;
     }
     setLoading(false);
   }
+
+  function validateForm(user) {
+    const errors = {};
+
+    // Validate email
+    if (!user.email) {
+      errors.email = "Email is required";
+    }
+
+    // Validate password
+    if (!user.password) {
+      errors.password = "Password is required";
+    } 
+    return errors;
+  }
+
+
   return (
     <Flex
       height={"calc(100vh - 70px)"}
@@ -80,19 +117,25 @@ export default function SignIn() {
         >
           {/* {JSON.stringify(currentUser)} */}
           {/* Error box */}
-          {error && (
+          {Object.keys(validationMessageErrors).length > 0 && (
             <Box
               bg="red.100" // Background color for the error box
               p={2} // Padding for the error box
               mb={2} // Margin bottom for spacing
               borderRadius="md" // Rounded corners
               display="flex"
-              justifyContent="center"
-              alignItems="center"
             >
-              <Text color="red.500" fontSize="md" fontWeight={"semibold"}>
-                {error}
-              </Text>
+              <ul>
+                {Object.keys(validationMessageErrors).map((fieldName) => (
+                  <li key={fieldName} style={{ marginLeft: "1rem" }}>
+                    {" "}
+                    {/* Add marginLeft here */}
+                    <Text color="red.500" fontSize="sm" fontWeight="semibold">
+                      {validationMessageErrors[fieldName]}
+                    </Text>
+                  </li>
+                ))}
+              </ul>
             </Box>
           )}
           <Stack spacing={4}>
@@ -103,6 +146,7 @@ export default function SignIn() {
                 name="email"
                 value={user.email}
                 onChange={handleInputChange}
+                isInvalid={validationErrors.email}
               />
             </FormControl>
             <FormControl id="password" isRequired>
@@ -113,6 +157,7 @@ export default function SignIn() {
                   name="password"
                   value={user.password}
                   onChange={handleInputChange}
+                  isInvalid={validationErrors.password}
                 />
                 <InputRightElement h={"full"}>
                   <Button
@@ -129,14 +174,14 @@ export default function SignIn() {
             </FormControl>
 
             <Stack spacing={7}>
-              <Stack
+              {/* <Stack
                 direction={{ base: "column", sm: "row" }}
                 align={"start"}
                 justify={"space-between"}
               >
                 <Checkbox marginRight={5}>Remember me</Checkbox>
                 <Text marginLeft={5} color={"blue.400"}>Forgot password?</Text>
-              </Stack>
+              </Stack> */}
               <Button
                 disabled={loading}
                 loadingText="Submitting"

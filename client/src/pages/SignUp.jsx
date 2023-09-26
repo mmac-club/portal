@@ -17,18 +17,12 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import {
-  useAuth,
-  googleAuthenicator,
-  facebookAuthenticator,
-} from "../contexts/AuthContext";
-import { FaGoogle, FaFacebook } from "react-icons/fa";
+import { useAuth } from "../contexts/AuthContext";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const messageError = {};
-  const [passwordError, setPasswordError] = useState("");
 
   const { signup, currentUser } = useAuth(); // Ensure that useAuth() is providing the signup function
 
@@ -77,8 +71,6 @@ export default function SignUp() {
     } = user;
     // Validate the form before submitting
     const errors = validateForm(user);
-    console.log(errors);
-    console.log(messageError);
     if (
       Object.keys(errors).length > 0 ||
       Object.keys(messageError).length > 0
@@ -86,7 +78,6 @@ export default function SignUp() {
       // If there are validation errors, set them and prevent form submission
       setValidationErrors(errors);
       setValidationMessageErrors(messageError);
-      // console.log(validationMessageErrors)
       return;
     }
 
@@ -95,22 +86,13 @@ export default function SignUp() {
 
     try {
       await signup(user);
-      console.log("User created");
     } catch (error) {
-      console.log("Error" + error);
+      messageError.fromFirebase = error
+      setValidationMessageErrors(messageError)
+      return;
     }
     setLoading(false);
   }
-
-  const handleGoogelSignin = async () => {
-    console.log("Singing In with Google");
-    await googleAuthenicator();
-  };
-
-  const handleFacebookSignin = async () => {
-    console.log("Singing in with Facebook");
-    await facebookAuthenticator();
-  };
 
   function validateForm(user) {
     const errors = {};
@@ -145,10 +127,7 @@ export default function SignUp() {
       )
     ) {
       messageError.password =
-        "Password must be at least 8 characters long and contains at least one uppercase letter, one lowercase letter, one digit, and one special character ";
-      setPasswordError(
-        "Password must be at least 8 characters long and contains at least one uppercase letter, one lowercase letter, one digit, and one special character "
-      );
+        "Password must be at least 8 characters and include uppercase, lowercase, digit, and special character";
     }
 
     // Validate dateOfBirth (you can add more specific validation as needed)
@@ -200,30 +179,29 @@ export default function SignUp() {
           boxShadow={"2xl"}
           p={8}
         >
-          {passwordError}
-          {JSON.stringify(currentUser)}
           {/* Error box */}
-          {Object.keys(messageError).length > 0 && (
+          {Object.keys(validationMessageErrors).length > 0 && (
             <Box
               bg="red.100" // Background color for the error box
               p={2} // Padding for the error box
               mb={2} // Margin bottom for spacing
               borderRadius="md" // Rounded corners
               display="flex"
-              justifyContent="center"
-              alignItems="center"
             >
               <ul>
-                {Object.keys(messageError).map((fieldName) => (
-                  <li key={fieldName}>
-                    <Text color="red.500" fontSize="md" fontWeight="semibold">
-                      {messageError[fieldName]}
+                {Object.keys(validationMessageErrors).map((fieldName) => (
+                  <li key={fieldName} style={{ marginLeft: "1rem" }}>
+                    {" "}
+                    {/* Add marginLeft here */}
+                    <Text color="red.500" fontSize="sm" fontWeight="semibold">
+                      {validationMessageErrors[fieldName]}
                     </Text>
                   </li>
                 ))}
               </ul>
             </Box>
           )}
+
           <Stack spacing={3}>
             <HStack>
               <Box>
@@ -258,7 +236,7 @@ export default function SignUp() {
                 name="email"
                 value={user.email}
                 onChange={handleInputChange}
-                isInvalid={validationErrors.email}
+                isInvalid={validationErrors.email || validationMessageErrors.email}
               />
             </FormControl>
 
@@ -299,7 +277,7 @@ export default function SignUp() {
                   name="phoneNumber"
                   value={user.phoneNumber}
                   onChange={handleInputChange}
-                  isInvalid={validationErrors.phoneNumber}
+                  isInvalid={validationErrors.phoneNumber || validationMessageErrors.phoneNumber}
                 />
               </FormControl>
               {/* Add Postal Code */}
@@ -311,7 +289,7 @@ export default function SignUp() {
                   name="postalCode"
                   value={user.postalCode}
                   onChange={handleInputChange}
-                  isInvalid={validationErrors.postalCode}
+                  isInvalid={validationErrors.postalCode || validationMessageErrors.postalCode}
                 />
               </FormControl>
               {/* Add Phone Number */}
@@ -324,7 +302,7 @@ export default function SignUp() {
                   name="password"
                   value={user.password}
                   onChange={handleInputChange}
-                  isInvalid={validationErrors.password}
+                  isInvalid={validationErrors.password || validationMessageErrors.password}
                 />
                 <InputRightElement h={"full"}>
                   <Button
@@ -349,7 +327,7 @@ export default function SignUp() {
                     name="confirmPassword"
                     value={user.confirmPassword}
                     onChange={handleInputChange}
-                    isInvalid={validationErrors.confirmPassword}
+                    isInvalid={validationErrors.confirmPassword || validationMessageErrors.confirmPassword}
                   />
                   <InputRightElement h={"full"}>
                     <Button
@@ -382,32 +360,6 @@ export default function SignUp() {
                 Sign up
               </Button>
             </Stack>
-            <HStack spacing={10} pt={2}>
-              <Button
-                onClick={handleGoogelSignin}
-                leftIcon={<FaGoogle />}
-                colorScheme="red"
-                variant="outline"
-                size="md"
-                fontWeight="medium"
-                borderRadius="full"
-                _hover={{ bg: "red.500", color: "white" }}
-              >
-                Sign in with Google
-              </Button>
-              <Button
-                onClick={handleFacebookSignin}
-                leftIcon={<FaFacebook />}
-                colorScheme="blue"
-                variant="outline"
-                size="md"
-                fontWeight="medium"
-                borderRadius="full"
-                _hover={{ bg: "blue.500", color: "white" }}
-              >
-                Sign in with Facebook
-              </Button>
-            </HStack>
             <Stack pt={6}>
               <Text align={"center"}>
                 Already a user? <Link color={"blue.400"}>Login</Link>

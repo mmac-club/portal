@@ -1,75 +1,209 @@
+import {
+    Flex,
+    Box,
+    FormControl,
+    FormLabel,
+    Input,
+    InputGroup,
+    HStack,
+    InputRightElement,
+    Stack,
+    Button,
+    Heading,
+    Text,
+    useColorModeValue,
+    SimpleGrid,
+    Card,
+    CardHeader,
+    CardBody,
+    CardFooter,
+    List,
+    ListIcon,
+    ListItem,
+    Center,
+    Select,
+    Radio,
+    RadioGroup,
+    AbsoluteCenter,
+    Grid,
+  } from "@chakra-ui/react";
+
+  import { MdAlarm, MdLocationOn, MdOutlineCalendarMonth, MdAttachMoney } from 'react-icons/md'
+
 export default function LeagueRegistration() {
     return (
         <Flex
-            minH={"100vh"}
+            minH={"calc(100vh - 70px)"}
             align={"center"}
             justify={"center"}
             bg={useColorModeValue("gray.50", "gray.800")}
             >
-            <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-                <Stack align={"center"}>
-                <Heading fontSize={"4xl"} textAlign={"center"}>
-                    Registration Form
-                </Heading>
-                </Stack>
-                <Box
-                rounded={"lg"}
-                bg={useColorModeValue("white", "gray.700")}
-                boxShadow={"2xl"}
-                p={8}
-                >
-                {/* {JSON.stringify(currentUser)} */}
-                {/* Error box */}
-                {error && (
-                    <Box
-                    bg="red.100" // Background color for the error box
-                    p={2} // Padding for the error box
-                    mb={2} // Margin bottom for spacing
-                    borderRadius="md" // Rounded corners
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    >
-                    <Text color="red.500" fontSize="md" fontWeight={"semibold"}>
-                        {error}
-                    </Text>
-                    </Box>
-                )}
-                <Stack spacing={4}>
-                    <FormControl id="email" isRequired>
-                    <FormLabel>Email address</FormLabel>
-                    <Input
-                        type="email"
-                        name="email"
-                        value={user.email}
-                        onChange={handleInputChange}
-                    />
-                    </FormControl>
-                    <FormControl id="password" isRequired>
-                    <FormLabel>Password</FormLabel>
-                    <InputGroup>
-                        <Input
-                        type={showPassword ? "text" : "password"}
-                        name="password"
-                        value={user.password}
-                        onChange={handleInputChange}
-                        />
-                        <InputRightElement h={"full"}>
-                        <Button
-                            variant={"ghost"}
-                            disabled
-                            onMouseDown={() => setShowPassword(true)}
-                            onMouseUp={() => setShowPassword(false)}
-                            onMouseLeave={() => setShowPassword(false)}
-                        >
-                            {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                        </Button>
-                        </InputRightElement>
-                    </InputGroup>
-                    </FormControl>
-                </Stack>
-                </Box>
-            </Stack>
-            </Flex>
+            <SimpleGrid gap="10" columns={"2"}>
+                <Card _hover={{
+                    bg: useColorModeValue('#09356b'),
+                    color: 'white',
+                    transition: 'all 0.5s ease'
+                }}>
+                    <CardHeader>
+                        <Heading size='md' textAlign={"center"}> Friday Membership</Heading>
+                    </CardHeader>
+                    <CardBody>
+                        <List spacing={3}>
+                        <ListItem>
+                            <ListIcon as={MdAttachMoney} color='green.500' />
+                            150 $
+                        </ListItem>
+                        <ListItem>
+                            <ListIcon as={MdOutlineCalendarMonth} color='green.500' />
+                            2023-09-01 To 2023-12-08
+                        </ListItem>
+                        <ListItem>
+                            <ListIcon as={MdAlarm} color='green.500' />
+                            21:00 - 23:00
+                        </ListItem>
+                        <ListItem>
+                            <ListIcon as={MdLocationOn} color='green.500' />
+                            255 Ontario St E, Montreal, Quebec H2X 1X6, 5th floor
+                        </ListItem>
+                        </List>
+                    </CardBody>
+                    <CardFooter justifyContent={"center"}>
+                            <Button 
+                                color={"white"} 
+                                background={"rgba(9, 53, 107, 0.7)"}
+                                cursor={"pointer"}
+                                _hover={{
+                                        textDecoration: 'none',
+                                        bg: 'white',
+                                        color: '#09356b',
+                                        transition: 'all 0.5s ease'
+                                    }}>
+                                Select Plan
+                            </Button>   
+                    </CardFooter>
+                </Card>
+                <Card _hover={{
+                    bg: useColorModeValue('#09356b'),
+                    color: 'white',
+                    transition: 'all 0.5s ease'
+                }}>
+                    <CardHeader>
+                        <Heading size='md' textAlign={"center"}> Sunday Membership</Heading>
+                    </CardHeader>
+                    <CardBody>
+                        <List spacing={3}>
+                        <ListItem>
+                            <ListIcon as={MdAttachMoney} color='green.500' />
+                            150 $
+                        </ListItem>
+                        <ListItem>
+                            <ListIcon as={MdOutlineCalendarMonth} color='green.500' />
+                            2023-09-03 To 2023-12-10
+                        </ListItem>
+                        <ListItem>
+                            <ListIcon as={MdAlarm} color='green.500' />
+                            10:00 - 12:00
+                        </ListItem>
+                        <ListItem>
+                            <ListIcon as={MdLocationOn} color='green.500' />
+                            255 Ontario St E, Montreal, Quebec H2X 1X6, 5th floor
+                        </ListItem>
+                        </List>
+                    </CardBody>
+                    <CardFooter justifyContent={"center"}>
+                            <Button 
+                                color={"white"} 
+                                background={"rgba(9, 53, 107, 0.7)"}
+                                cursor={"pointer"}
+                                _hover={{
+                                        textDecoration: 'none',
+                                        bg: 'white',
+                                        color: '#09356b',
+                                        transition: 'all 0.5s ease'
+                                    }}>
+                                Select Plan
+                            </Button>   
+                    </CardFooter>
+                </Card>
+                <Card _hover={{
+                    bg: useColorModeValue('#09356b'),
+                    color: 'white',
+                    transition: 'all 0.5s ease'
+                }}>
+                    <CardHeader>
+                        <Heading size='md' textAlign={"center"}> Drop In </Heading>
+                    </CardHeader>
+                    <CardBody>
+                        <List spacing={3}>
+                        <ListItem>
+                            <ListIcon as={MdAttachMoney} color='green.500' />
+                            15 $
+                        </ListItem>
+                        <ListItem>
+                            <ListIcon as={MdLocationOn} color='green.500' />
+                            255 Ontario St E, Montreal, Quebec H2X 1X6, 5th floor
+                        </ListItem>
+                        </List>
+                    </CardBody>
+                    <CardFooter justifyContent={"center"}>
+                            <Button 
+                                color={"white"} 
+                                background={"rgba(9, 53, 107, 0.7)"}
+                                cursor={"pointer"}
+                                _hover={{
+                                        textDecoration: 'none',
+                                        bg: 'white',
+                                        color: '#09356b',
+                                        transition: 'all 0.5s ease'
+                                    }}>
+                                Select Plan
+                            </Button>   
+                    </CardFooter>
+                </Card>
+                <Card _hover={{
+                    bg: useColorModeValue('#09356b'),
+                    color: 'white',
+                    transition: 'all 0.5s ease'
+                }}>
+                    <CardHeader>
+                        <Heading size='md' textAlign={"center"}> Kids Training Camp </Heading>
+                    </CardHeader>
+                    <CardBody>
+                        <List spacing={3}>
+                        <ListItem>
+                            <ListIcon as={MdAttachMoney} color='green.500' />
+                            650 $
+                        </ListItem>
+                        <ListItem>
+                            <ListIcon as={MdOutlineCalendarMonth} color='green.500' />
+                            2023-09-16 To 2024-05-11
+                        </ListItem>
+                        <ListItem>
+                            <ListIcon as={MdAlarm} color='green.500' />
+                            17:00 - 19:00
+                        </ListItem>
+                        <ListItem>
+                            <ListIcon as={MdLocationOn} color='green.500' />
+                            255 Ontario St E, Montreal, Quebec H2X 1X6, 5th floor
+                        </ListItem>
+                        </List>
+                    </CardBody>
+                    <CardFooter justifyContent={"center"}>
+                            <Button 
+                                color={"white"} 
+                                background={"rgba(9, 53, 107, 0.7)"}
+                                cursor={"pointer"}
+                                _hover={{
+                                        textDecoration: 'none',
+                                        bg: 'white',
+                                        color: '#09356b',
+                                        transition: 'all 0.5s ease'
+                                    }}>
+                                Select Plan
+                            </Button>   
+                    </CardFooter>
+                </Card>
+            </SimpleGrid>
+        </Flex>
     )
 }

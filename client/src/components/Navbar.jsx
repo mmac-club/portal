@@ -33,6 +33,8 @@ const NavLink = ({name, link}) => {
       _hover={{
         textDecoration: 'none',
         bg: useColorModeValue('#09356b'),
+        color: 'white',
+        transition: 'all 0.5s ease'
       }}
       href={link}>
       {name}
@@ -63,14 +65,14 @@ export default function Navbar() {
 
   const Links = [
                     {link: "/Home", name: 'Home'},
-                    {link: "/Registration", name: 'Registration'},
+                    {link: "/league-registration", name: 'Registration'},
                     {link: "/About", name: 'About Us'},
                 ]
 
   return (
     <>
-      <Box bg={"#15539e"} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+      <Box bg={"white"} px={4} height={"70px"}>
+        <Flex h={16} alignItems={'center'} justifyContent={'space-between'} height={"70px"}>
           <IconButton
               size={'md'}
               icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -79,7 +81,7 @@ export default function Navbar() {
               onClick={isOpen ? onClose : onOpen}
             />
           <HStack spacing={8} alignItems={'center'}>
-            <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }} fontSize={"16px"} color={'white'} fontWeight={'600'}>
+            <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }} fontSize={"16px"} color={'#09356b'} fontWeight={'600'}>
               {Links.map((link) => (
                 <NavLink key={link.name} {...link}></NavLink>
               ))}
@@ -127,7 +129,7 @@ export default function Navbar() {
         </Flex>
         {isOpen ? (
           <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} spacing={4} color={'white'}>
+            <Stack as={'nav'} spacing={4} fontSize={"16px"} color={'#09356b'} fontWeight={'600'}>
               {Links.map((link) => (
                 <NavLink key={link.name} {...link}></NavLink>
               ))}

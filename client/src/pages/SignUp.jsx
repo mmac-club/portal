@@ -19,7 +19,6 @@ import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
-
 export default function SignUp() {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
@@ -163,7 +162,7 @@ export default function SignUp() {
 
   return (
     <Flex
-      minH={"100vh"}
+      height={"calc(100vh - 70px)"}
       align={"center"}
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}

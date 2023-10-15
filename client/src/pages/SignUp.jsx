@@ -13,13 +13,15 @@ import {
   Text,
   useColorModeValue,
   Select,
-  Link,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useAuth } from "../contexts/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
+
 
 export default function SignUp() {
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const messageError = {};
@@ -362,7 +364,7 @@ export default function SignUp() {
             </Stack>
             <Stack pt={6}>
               <Text align={"center"}>
-                Already a user? <Link color={"blue.400"}>Login</Link>
+                Already a user? <Link to="/signin" style={{color: '#4299E1'}} >Login</Link>
               </Text>
             </Stack>
           </Stack>

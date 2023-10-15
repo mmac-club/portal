@@ -96,20 +96,3 @@ export function AuthProvider({ children }){
         </AuthContext.Provider>
     )
 }
-
-export async function googleAuthenicator() {
-    try {
-        const response = await signInWithPopup(getAuth(),new GoogleAuthProvider());
-        console.log(response);
-    } catch (err){
-        console.error(err);
-    }
-}
-
-export async function facebookAuthenticator() {
-    try {
-        console.log("Logging with Facebook");
-    } catch (err) {
-        console.error(err);
-    }
-}

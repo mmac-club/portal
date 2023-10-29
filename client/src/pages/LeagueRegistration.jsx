@@ -35,11 +35,14 @@ export default function LeagueRegistration() {
         <Flex
             minH={"calc(100vh - 70px)"}
             align={"center"}
-            justify={"center"}
+            justify={"space-evenly"}
             bg={useColorModeValue("gray.50", "gray.800")}
+            direction={{ base: 'column', md: 'row' }}
             >
-            <SimpleGrid gap="10" columns={"2"}>
-                <Card _hover={{
+                <Card
+m={{ base: 4, md: 2 }}
+                minH={{base: '70vh', md: '50vh', sm: 'auto'}}
+                _hover={{
                     bg: useColorModeValue('#09356b'),
                     color: 'white',
                     transition: 'all 0.5s ease'
@@ -72,6 +75,7 @@ export default function LeagueRegistration() {
                                 color={"white"} 
                                 background={"rgba(9, 53, 107, 0.7)"}
                                 cursor={"pointer"}
+                                border={"2px solid white"}
                                 _hover={{
                                         textDecoration: 'none',
                                         bg: 'white',
@@ -82,7 +86,10 @@ export default function LeagueRegistration() {
                             </Button>   
                     </CardFooter>
                 </Card>
-                <Card _hover={{
+                <Card
+m={{ base: 4, md: 2 }}
+                    minH={{base: '70vh', md: '50vh', sm: 'auto'}}
+                    _hover={{
                     bg: useColorModeValue('#09356b'),
                     color: 'white',
                     transition: 'all 0.5s ease'
@@ -115,6 +122,7 @@ export default function LeagueRegistration() {
                                 color={"white"} 
                                 background={"rgba(9, 53, 107, 0.7)"}
                                 cursor={"pointer"}
+                                border={"2px solid white"}
                                 _hover={{
                                         textDecoration: 'none',
                                         bg: 'white',
@@ -125,7 +133,10 @@ export default function LeagueRegistration() {
                             </Button>   
                     </CardFooter>
                 </Card>
-                <Card _hover={{
+                <Card
+m={{ base: 4, md: 2 }}
+                minH={{base: '70vh', md: '50vh', sm: 'auto'}}
+                _hover={{
                     bg: useColorModeValue('#09356b'),
                     color: 'white',
                     transition: 'all 0.5s ease'
@@ -150,6 +161,7 @@ export default function LeagueRegistration() {
                                 color={"white"} 
                                 background={"rgba(9, 53, 107, 0.7)"}
                                 cursor={"pointer"}
+                                border={"2px solid white"}
                                 _hover={{
                                         textDecoration: 'none',
                                         bg: 'white',
@@ -160,7 +172,10 @@ export default function LeagueRegistration() {
                             </Button>   
                     </CardFooter>
                 </Card>
-                <Card _hover={{
+                <Card
+                m={{ base: 4, md: 2 }}
+                    minH={{base: '70vh', md: '50vh', sm: 'auto'}}
+                    _hover={{
                     bg: useColorModeValue('#09356b'),
                     color: 'white',
                     transition: 'all 0.5s ease'
@@ -193,6 +208,7 @@ export default function LeagueRegistration() {
                                 color={"white"} 
                                 background={"rgba(9, 53, 107, 0.7)"}
                                 cursor={"pointer"}
+                                border={"2px solid white"}
                                 _hover={{
                                         textDecoration: 'none',
                                         bg: 'white',
@@ -203,7 +219,6 @@ export default function LeagueRegistration() {
                             </Button>   
                     </CardFooter>
                 </Card>
-            </SimpleGrid>
         </Flex>
     )
 }

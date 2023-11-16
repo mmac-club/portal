@@ -20,10 +20,6 @@ const connect = async () => {
 }
 
 
-// Set up a basic route
-app.get('/', (req, res) => {
-  res.send('Hello, Express!');
-});
 
 // middlewares
 app.use(express.json())

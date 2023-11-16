@@ -30,6 +30,7 @@ const NavLink = ({name, link}) => {
       px={2}
       py={1}
       rounded={'md'}
+      background={'white'}
       _hover={{
         textDecoration: 'none',
         bg: useColorModeValue('#09356b'),
@@ -43,7 +44,7 @@ const NavLink = ({name, link}) => {
 }
 
 export default function Navbar() {
-  const { colorMode, toggleColorMode } = useColorMode()
+  
   const { logout } = useAuth()
   const [error, setError] = useState("")
   const navigate = useNavigate()
@@ -71,7 +72,7 @@ export default function Navbar() {
 
   return (
     <>
-      <Box bg={"white"} px={4} height={"70px"}>
+      <Box bg={"white"} px={4} height={"70px"} position={'sticky'} top={0} zIndex={999}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'} height={"70px"}>
           <IconButton
               size={'md'}
@@ -80,18 +81,21 @@ export default function Navbar() {
               display={{ md: 'none' }}
               onClick={isOpen ? onClose : onOpen}
             />
-          <HStack spacing={8} alignItems={'center'}>
-            <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }} fontSize={"16px"} color={'#09356b'} fontWeight={'600'}>
+          <HStack spacing={8} alignItems={'center'} display={{ base: 'none', md: 'flex' }} >
+            <HStack as={'nav'} spacing={4} fontSize={"16px"} color={'#09356b'} fontWeight={'600'}>
               {Links.map((link) => (
                 <NavLink key={link.name} {...link}></NavLink>
               ))}
             </HStack>
           </HStack>
+          <HStack position={'absolute'} left={'50%'} transform={'translateX(-50%)'}>
+            <img src='/logo.png' width={200}></img>
+          </HStack>
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
-              <Button onClick={toggleColorMode}>
+              {/* <Button onClick={toggleColorMode}>
                 {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-              </Button>
+              </Button> */}
 
               <Menu>
                 <MenuButton
@@ -128,8 +132,8 @@ export default function Navbar() {
           </Flex>
         </Flex>
         {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} spacing={4} fontSize={"16px"} color={'#09356b'} fontWeight={'600'}>
+          <Box pb={4} position={'relative'} zIndex={999} display={{ md: 'none' }}>
+            <Stack as={'nav'} spacing={4} boxShadow='sm' borderRadius={'md'} background={'white'} fontSize={"16px"} color={'#09356b'} fontWeight={'600'}>
               {Links.map((link) => (
                 <NavLink key={link.name} {...link}></NavLink>
               ))}

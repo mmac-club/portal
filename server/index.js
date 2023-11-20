@@ -3,6 +3,7 @@ import chalk from 'chalk';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import userRoute from "./api/routes/users.js"
+import authRoute from "./api/routes/register.js"
 
 // Create an instance of Express
 const app = express();
@@ -23,8 +24,8 @@ const connect = async () => {
 
 // middlewares
 app.use(express.json())
-app.use("/users", userRoute)
-
+app.use("/user", userRoute)
+app.use("/auth", authRoute)
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500
   const errorMessage = err.message || "Something went wrong!"

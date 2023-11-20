@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../services/AuthService/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function SignIn() {

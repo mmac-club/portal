@@ -18,7 +18,7 @@ const router = createBrowserRouter(
         <Route path="signup" element={<SignUp />} /> {/* No need for empty elements */}
         <Route path="signin" element={<SignIn />} />
         <Route path="league-registration" element={<LeagueRegistration />} />
-        <Route path="Home" element={<Dashboard />} />
+        {/* <Route path="home" element={<Dashboard />} /> */}
 
       </Route>
   )

@@ -3,6 +3,8 @@ import chalk from 'chalk';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import userRoute from "./api/routes/users.js"
+import paymentRoute from "./api/routes/payment.js"
+
 
 // Create an instance of Express
 const app = express();
@@ -19,11 +21,20 @@ const connect = async () => {
   }
 }
 
+app.use(function(req, res, next){
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, accept, access-control-allow-origin');
 
+  if ('OPTIONS' == req.method) res.sendStatus(200);
+  else next();
+});
 
 // middlewares
 app.use(express.json())
 app.use("/users", userRoute)
+app.use("/payment/orders", paymentRoute)
+
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500

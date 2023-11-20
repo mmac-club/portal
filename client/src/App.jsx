@@ -10,6 +10,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import LeagueRegistration from "./pages/LeagueRegistration";
 import PrivateRoute from "./components/PrivateRoute";
+import "./App.css"
 
 const router = createBrowserRouter(
   createRoutesFromElements(

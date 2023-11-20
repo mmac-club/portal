@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap');
+
+
+@font-face {
+    font-family: 'integralcd-regular';
+    src: url("../public/Integral-CF/Fontspring-DEMO-integralcf-regular.otf");
+}
+
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.price {
+    position: relative;
+    color: rgba(9, 53, 107, 0.7);
+    font-size: 60px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+.price sub {
+position: absolute;
+bottom: 14px;
+color: #a3a3a3;
+font-size: 14px;
+font-weight: lighter;
+}

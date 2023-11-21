@@ -1,10 +1,10 @@
 import React, {useContext, useEffect, useState} from "react";
-import { auth } from "../../firebase";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-
+import { auth } from "../../../../server/api/controllers/firebase";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import UserManagementService from "../UserManagementService/UserManagement";
 
 const AuthContext = React.createContext()
-
+const userManagementService = new UserManagementService();
 // eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
     return useContext(AuthContext)
@@ -19,6 +19,14 @@ export function AuthProvider({ children }){
         const authInstance = getAuth(); // Get the authentication instance
         try {
             const userCredential = await createUserWithEmailAndPassword(authInstance, user.email, user.password);
+            try {
+                const userData = { ...user };
+                const res = await userManagementService.register(userData);
+                console.log(res)
+            }
+            catch (error) {
+                throw error.message
+            }
             return userCredential;
         } 
         catch (error) {

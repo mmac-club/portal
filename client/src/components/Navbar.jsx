@@ -18,7 +18,7 @@ import {
   Center,
 } from '@chakra-ui/react'
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../services/AuthService/AuthContext'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -60,12 +60,11 @@ export default function Navbar() {
     }catch(error){
       console.log(error)
       setError("Failed to Logout")
-
     }
   }
 
   const Links = [
-                    {link: "/Home", name: 'Home'},
+                    {link: "/", name: 'Home'},
                     {link: "/league-registration", name: 'Registration'},
                     {link: "/About", name: 'About Us'},
                 ]

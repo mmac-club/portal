@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 import userRoute from "./api/routes/users.js"
 import paymentRoute from "./api/routes/payment.js"
 
+import authRoute from "./api/routes/register.js"
 
 // Create an instance of Express
 const app = express();
@@ -32,9 +33,9 @@ app.use(function(req, res, next){
 
 // middlewares
 app.use(express.json())
-app.use("/users", userRoute)
 app.use("/payment/orders", paymentRoute)
-
+app.use("/user", userRoute)
+app.use("/auth", authRoute)
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500

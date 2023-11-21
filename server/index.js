@@ -52,5 +52,4 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   connect()
   console.log(chalk.hex('#DEADED').bold(`Server is running on port ${port}`));
-  console.log(chalk.blue.bgGrey.bold('LINK')+ ': ' + chalk.blue.underline.bold('http://localhost:3000') );
 });

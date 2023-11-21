@@ -66,7 +66,7 @@ export default function Navbar() {
   const Links = [
                     {link: "/", name: 'Home'},
                     {link: "/league-registration", name: 'Registration'},
-                    {link: "/About", name: 'About Us'},
+                    {link: "/about", name: 'About Us'},
                 ]
 
   return (
@@ -88,7 +88,7 @@ export default function Navbar() {
             </HStack>
           </HStack>
           <HStack position={'absolute'} left={'50%'} transform={'translateX(-50%)'}>
-            <img src='/logo.png' width={200}></img>
+            <a href='/'><img src='/logo.png' width={200}></img></a>
           </HStack>
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>

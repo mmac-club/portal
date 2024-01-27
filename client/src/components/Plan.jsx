@@ -43,10 +43,11 @@ const Plan = ({index, type, price, time, date, address, onOpen, changePlan}) => 
   return (
     <Card
         m={{ base: 4, md: 2 }}
-        minH={{base: '70vh', md: '50vh', sm: 'auto'}}
+        border={'2px solid white'}
+        cursor={'pointer'}
+        
         _hover={{
-            border: '2px solid #09356b',
-            cursor: 'pointer'
+            border: '2px solid #09356b'
            
         }}>
             <CardHeader>

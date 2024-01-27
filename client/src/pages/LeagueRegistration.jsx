@@ -48,18 +48,10 @@ import { useState } from "react";
 
 import PaymentHandler from "../components/PaymentHandler";
 import Plan from "../components/Plan"
+import PaymentConfirmation from "./PaymentConfirmation";
 
 export default function LeagueRegistration() {
     
-    const { isOpen, onOpen, onClose } = useDisclosure()
-    const [selectedPlan, setPlanValue] = useState(0)
-
-    const changePlan = (planIndex) => {
-        console.log(planIndex);
-        setPlanValue(planIndex);
-    };
-
-
     const plans = [
         {
             type: "Friday Membership",
@@ -91,10 +83,25 @@ export default function LeagueRegistration() {
         },
     ]
 
+    const paymentModal = useDisclosure()
+    const paymentResponseModal = useDisclosure()
+    const [selectedPlan, setPlanValue] = useState(0)
+    const [paymentResonse, setPaymentResponse] = useState('')
+
+
+    const changePlan = (planIndex) => {
+        console.log(planIndex);
+        setPlanValue(planIndex);
+    };
+
+    const changePaymentResponse= (status) => {
+        setPaymentResponse(status);
+        paymentResponseModal.onOpen();
+    }
 
     return (
         <>
-            <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose} isCentered>
+            <Modal closeOnOverlayClick={false} isOpen={paymentModal.isOpen} onClose={paymentModal.onClose} isCentered>
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Selected Plan</ModalHeader>
@@ -119,14 +126,33 @@ export default function LeagueRegistration() {
                                         <Td fontWeight={'bold'}>Time</Td>
                                         <Td>{plans[selectedPlan] && plans[selectedPlan].time}</Td>
                                     </Tr>
-                                    {/* <Tr>
-                                        <Td>Address</Td>
-                                        <Td>{plans[selectedPlan] && plans[selectedPlan].address}</Td>
-                                    </Tr> */}
+                                    <Tr>
+                                        <Td fontWeight={'bold'}>Plan For</Td>
+                                        <Td>
+                                            <Select>
+                                                <option value=''>Select Plan</option>
+                                                <option value='self'>Self</option>
+                                                <option value='Kid'>Kid</option>
+                                            </Select>
+                                        </Td>
+                                    </Tr>
                                 </Tbody>
                             </Table>
                         </TableContainer>
-                        <PaymentHandler amount={plans[selectedPlan].price} selectedPlan={selectedPlan}/>
+                        <PaymentHandler amount={plans[selectedPlan].price} selectedPlan={selectedPlan} onClose={paymentModal.onClose} openPaymentResponseModal={changePaymentResponse}/>
+                    </ModalBody>
+
+                    <ModalFooter>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
+
+            <Modal closeOnOverlayClick={false} isOpen={paymentResponseModal.isOpen} onClose={paymentResponseModal.onClose} isCentered>
+                <ModalOverlay />
+                <ModalContent maxW={{base:"90%", lg: "60%"}}>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <PaymentConfirmation status={paymentResonse}/>
                     </ModalBody>
 
                     <ModalFooter>
@@ -134,21 +160,29 @@ export default function LeagueRegistration() {
                 </ModalContent>
             </Modal>
             
-        
-            <Flex
-                minH={"calc(100vh - 70px)"}
-                align={"center"}
-                justify={"space-evenly"}
+            <Box
+                display='flex'
+                h={"calc(100vh - 70px)"}
+                justifyContent={"center"}
                 bg={useColorModeValue("gray.50", "gray.800")}
-                direction={{ base: 'column', md: 'row' }}
-                >
-                    {
-                        plans.map((plan, index) => {
-                            return <Plan key={index} index={index} {...plan}  onOpen={onOpen} changePlan={changePlan}/>;
-                        })
-                    }
-                    
-            </Flex>
+                alignItems={"center"}
+            >
+                <SimpleGrid
+                    columns={{ base: 1, md: 2, lg: 4 }} 
+                    spacingX='40px' 
+                    spacingY='20px'
+                    padding='20px'                    
+                    // direction={{ base: 'column', md: 'row' }}
+                    >
+                        {
+                            plans.map((plan, index) => {
+                                return <Plan key={index} index={index} {...plan}  onOpen={paymentModal.onOpen} changePlan={changePlan}/>;
+                            })
+                        }
+                        
+                </SimpleGrid>
+            </Box>
+            
         </>
     )
 }

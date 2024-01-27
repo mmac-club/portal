@@ -21,6 +21,7 @@ export function AuthProvider({ children }){
             const userCredential = await createUserWithEmailAndPassword(authInstance, user.email, user.password);
             try {
                 const userData = { ...user };
+                console.log(userData)
                 const res = await userManagementService.register(userData);
                 console.log(res)
             }

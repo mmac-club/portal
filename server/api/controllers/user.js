@@ -1,10 +1,10 @@
 import User from "../models/User.js";
 
 export const createUser = async (req, res, next) => {
-    const newUser = new User(req.body)
+    const newUser = new User(req.body) 
     try {
         await newUser.save()
-        res.status(200).send("User has been created.")
+        res.status(200).json({"message":"User has been created."})
     }
     catch(error) {
         next(error)

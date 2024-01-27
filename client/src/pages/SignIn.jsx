@@ -54,14 +54,12 @@ export default function SignIn() {
     e.preventDefault();
     const { email, password } = user;
     const errors = validateForm(user);
-    console.log(errors)
     if (
       Object.keys(errors).length > 0 ||
       Object.keys(messageError).length > 0
     ) {
       // If there are validation errors, set them and prevent form submission
       setValidationErrors(errors);
-      console.log(validationErrors)
       setValidationMessageErrors(messageError);
       return;
     }
@@ -70,7 +68,6 @@ export default function SignIn() {
     try {
       await login(user)
       navigate("/")
-      console.log("User login successful");
     } 
     catch (error) {
       messageError.fromFirebase = error

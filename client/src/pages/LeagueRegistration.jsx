@@ -55,7 +55,6 @@ export default function LeagueRegistration() {
     const [selectedPlan, setPlanValue] = useState(0)
 
     const changePlan = (planIndex) => {
-        console.log(planIndex);
         setPlanValue(planIndex);
     };
 

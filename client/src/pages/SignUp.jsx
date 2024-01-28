@@ -87,6 +87,7 @@ export default function SignUp() {
 
     try {
       await signup(user);
+      navigate("/")
     } catch (error) {
       messageError.fromFirebase = error
       setValidationMessageErrors(messageError)
@@ -318,8 +319,31 @@ export default function SignUp() {
                 </InputRightElement>
               </InputGroup>
             </FormControl>
+            <FormControl id="password" isRequired>
+              <FormLabel>Confirm Password</FormLabel>
+              <InputGroup>
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={user.password}
+                  onChange={handleInputChange}
+                  isInvalid={validationErrors.password || validationMessageErrors.password}
+                />
+                <InputRightElement h={"full"}>
+                  <Button
+                    variant={"ghost"}
+                    disabled
+                    onMouseDown={() => setShowPassword(true)}
+                    onMouseUp={() => setShowPassword(false)}
+                    onMouseLeave={() => setShowPassword(false)}
+                  >
+                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+            </FormControl>
 
-            <FormControl id="confirmPassword" isRequired>
+            {/* <FormControl id="confirmPassword" isRequired>
               <HStack>
                 <FormLabel>Confirm Password</FormLabel>
                 <InputGroup>
@@ -343,7 +367,7 @@ export default function SignUp() {
                   </InputRightElement>
                 </InputGroup>
               </HStack>
-            </FormControl>
+            </FormControl> */}
 
             <Stack spacing={10} pt={2}>
               <Button

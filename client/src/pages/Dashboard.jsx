@@ -32,11 +32,11 @@ export default function Dashboard() {
         left={0}
         width={"100%"}
         height={"100%"}
-        backgroundImage={"url('/team.jpeg')"} // Replace with the path to your image
+        backgroundImage={"url('/MMAC_Dashboard.jpeg')"} // Replace with the path to your image
         backgroundSize={"cover"}
         backgroundPosition={"center"}
         backgroundRepeat={"no-repeat"}
-        filter={"blur(3px)"} // Adjust the blur intensity
+        // filter={"blur(3px)"} // Adjust the blur intensity
         zIndex={-1}
       />
 

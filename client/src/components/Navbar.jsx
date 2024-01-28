@@ -23,7 +23,6 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const NavLink = ({name, link}) => {
-  console.log(name + " - " + link);
   return (
     <Box
       as="a"
@@ -58,7 +57,6 @@ export default function Navbar() {
       navigate("/signin")
 
     }catch(error){
-      console.log(error)
       setError("Failed to Logout")
     }
   }

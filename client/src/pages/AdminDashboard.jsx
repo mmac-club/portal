@@ -23,6 +23,12 @@ const AdminDashboard = () => {
   const [userStats, setUserStats] = useState({})
 
   useEffect(() => {
+    /**
+     * 
+     * @todo: Fetch Data from API using fetch/axios and set the result into setUsers
+     * 
+     *  */ 
+
     setUsers([{
         email: "johndoe@gmail.com",
         age: 25,
@@ -70,7 +76,6 @@ const AdminDashboard = () => {
         "total": 0
     })
     setUserStats(x);
-    console.log(x)
   }, [users])
 
 

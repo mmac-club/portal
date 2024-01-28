@@ -21,6 +21,7 @@ import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { useAuth } from '../services/AuthService/AuthContext'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import userlogo from '/username.png'
 
 const NavLink = ({name, link}) => {
   return (
@@ -106,7 +107,7 @@ export default function Navbar() {
                   minW={0}>
                   <Avatar
                     size={'sm'}
-                    src={'https://avatars.dicebear.com/api/male/username.svg'}
+                    src={userlogo}
                   />
                 </MenuButton>
                 <MenuList alignItems={'center'}>
@@ -114,7 +115,7 @@ export default function Navbar() {
                   <Center>
                     <Avatar
                       size={'2xl'}
-                      src={'https://avatars.dicebear.com/api/male/username.svg'}
+                      src={userlogo}
                     />
                   </Center>
                   <br />

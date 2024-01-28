@@ -64,9 +64,12 @@ export default function Navbar() {
   }
 
   const Links = [
+
                     {link: "/", name: 'Home'},
+                    {link: "/dashboard", name: 'Dashboard'},
                     {link: "/league-registration", name: 'Registration'},
                     {link: "/about", name: 'About Us'},
+                    
                 ]
 
   return (

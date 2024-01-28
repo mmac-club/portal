@@ -12,6 +12,7 @@ import LeagueRegistration from "./pages/LeagueRegistration";
 import PrivateRoute from "./components/PrivateRoute";
 import About from "./pages/About"
 import "./App.css"
+import AdminDashboard from "./pages/AdminDashboard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
         <Route path="signin" element={<SignIn />} />
         <Route path="league-registration" element={<LeagueRegistration />} />
         <Route path="about" element={<About />} />
+        <Route path="dashboard" element={<AdminDashboard />} />
         {/* <Route path="home" element={<Dashboard />} /> */}
 
       </Route>

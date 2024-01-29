@@ -61,10 +61,14 @@ export default function Navbar() {
     }
   }
 
+  async function handleAccountSettings() {
+      navigate("/account-setting")
+  }
+
   const Links = [
                     {link: "/", name: 'Home'},
                     {link: "/league-registration", name: 'Registration'},
-                    {link: "/about", name: 'About Us'},
+                    {link: "/about", name: 'About Us'}
                 ]
 
   return (
@@ -90,10 +94,6 @@ export default function Navbar() {
           </HStack>
           <Flex alignItems={'center'}>
             <Stack direction={'row'} spacing={7}>
-              {/* <Button onClick={toggleColorMode}>
-                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-              </Button> */}
-
               <Menu>
                 <MenuButton
                   as={Button}
@@ -121,7 +121,7 @@ export default function Navbar() {
                   <br />
                   <MenuDivider />
                   <MenuItem >Your Servers</MenuItem>
-                  <MenuItem >Account Settings</MenuItem>
+                  <MenuItem onClick={handleAccountSettings}>Account Settings</MenuItem>
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </MenuList>
               </Menu>

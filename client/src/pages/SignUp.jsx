@@ -275,7 +275,7 @@ export default function SignUp() {
                 <FormLabel>Phone No.</FormLabel>
                 <Input
                   type="tel"
-                  placeholder="Select your gender"
+                  placeholder="Enter Phone Number"
                   name="phoneNumber"
                   value={user.phoneNumber}
                   onChange={handleInputChange}
@@ -287,7 +287,7 @@ export default function SignUp() {
                 <FormLabel>Postal Code</FormLabel>
                 <Input
                   type="text"
-                  placeholder="Select your gender"
+                  placeholder="6 Digit Postal Code"
                   name="postalCode"
                   value={user.postalCode}
                   onChange={handleInputChange}
@@ -323,51 +323,25 @@ export default function SignUp() {
               <FormLabel>Confirm Password</FormLabel>
               <InputGroup>
                 <Input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={user.password}
+                  type={showConfirmPassword ? "text" : "password"}
+                  name="confirmPassword"
+                  value={user.confirmPassword}
                   onChange={handleInputChange}
-                  isInvalid={validationErrors.password || validationMessageErrors.password}
+                  isInvalid={validationErrors.confirmPassword || validationMessageErrors.confirmPassword}
                 />
                 <InputRightElement h={"full"}>
                   <Button
                     variant={"ghost"}
                     disabled
-                    onMouseDown={() => setShowPassword(true)}
-                    onMouseUp={() => setShowPassword(false)}
-                    onMouseLeave={() => setShowPassword(false)}
+                    onMouseDown={() => setShowConfirmPassword(true)}
+                    onMouseUp={() => setShowConfirmPassword(false)}
+                    onMouseLeave={() => setShowConfirmPassword(false)}
                   >
-                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                    {showConfirmPassword ? <ViewIcon /> : <ViewOffIcon />}
                   </Button>
                 </InputRightElement>
               </InputGroup>
             </FormControl>
-
-            {/* <FormControl id="confirmPassword" isRequired>
-              <HStack>
-                <FormLabel>Confirm Password</FormLabel>
-                <InputGroup>
-                  <Input
-                    type={showConfirmPassword ? "text" : "password"}
-                    name="confirmPassword"
-                    value={user.confirmPassword}
-                    onChange={handleInputChange}
-                    isInvalid={validationErrors.confirmPassword || validationMessageErrors.confirmPassword}
-                  />
-                  <InputRightElement h={"full"}>
-                    <Button
-                      variant={"ghost"}
-                      disabled
-                      onMouseDown={() => setShowConfirmPassword(true)}
-                      onMouseUp={() => setShowConfirmPassword(false)}
-                      onMouseLeave={() => setShowConfirmPassword(false)}
-                    >
-                      {showConfirmPassword ? <ViewIcon /> : <ViewOffIcon />}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-              </HStack>
-            </FormControl> */}
 
             <Stack spacing={10} pt={2}>
               <Button

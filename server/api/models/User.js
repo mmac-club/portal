@@ -3,6 +3,10 @@ const { Schema } = mongoose;
 
 const UserSchema = new mongoose.Schema(
   {
+    firebase_uid: {
+      type: String,  // Set the type to String
+      unique: true,
+    },
     firstName: {
       type: String,
       required: true,
@@ -24,7 +28,6 @@ const UserSchema = new mongoose.Schema(
     },
     phoneNumber: {
       type: Number,
-      unique: true,
     },
     postalCode: {
       type: String,

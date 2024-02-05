@@ -38,7 +38,7 @@ export default function SignUp() {
     gender: "",
     phoneNumber: "",
     postalCode: "",
-    confirmPassword: "",
+    confirmPassword: ""
   });
   const [validationErrors, setValidationErrors] = useState({}); // State to hold validation errors
   const [validationMessageErrors, setValidationMessageErrors] = useState({});
@@ -264,9 +264,9 @@ export default function SignUp() {
                   value={user.gender}
                   onChange={handleInputChange}
                 >
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
                 </Select>
               </FormControl>
             </HStack>

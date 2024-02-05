@@ -171,14 +171,6 @@ export default function SignIn() {
             </FormControl>
 
             <Stack spacing={7}>
-              {/* <Stack
-                direction={{ base: "column", sm: "row" }}
-                align={"start"}
-                justify={"space-between"}
-              >
-                <Checkbox marginRight={5}>Remember me</Checkbox>
-                <Text marginLeft={5} color={"blue.400"}>Forgot password?</Text>
-              </Stack> */}
               <Button
                 disabled={loading}
                 loadingText="Submitting"

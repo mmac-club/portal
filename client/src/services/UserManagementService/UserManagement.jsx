@@ -1,8 +1,9 @@
 
 export default class UserManagementService {
-  API_URL = import.meta.env.VITE_API_URL;
+  API_URL = import.meta.env.VITE_API_URL_DEV;
 
   async register(data) {
+    console.log(JSON.stringify(data))
     const response = await fetch(this.API_URL + "/auth/register", {
       method: "POST",
       headers: {
@@ -10,9 +11,22 @@ export default class UserManagementService {
       },
       body: JSON.stringify(data),
     });
+    console.log(response)
     const body = await response;
-    console.log(body)
     let m = body.message;
+    console.log(m)
     return m
   }
+
+  async get_user_by_id(userId) {
+    const response = await fetch(this.API_URL + "/user/" + userId, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const body = await response.json();
+    return body; // assuming the response body is the user details
+  }
+  
 }

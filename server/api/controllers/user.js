@@ -2,6 +2,7 @@ import User from "../models/User.js";
 
 export const createUser = async (req, res, next) => {
     const newUser = new User(req.body) 
+    console.log(newUser)
     try {
         await newUser.save()
         res.status(200).json({"message":"User has been created."})
@@ -36,12 +37,18 @@ export const deleteUser = async (req, res, next) => {
 
 export const getUser = async (req, res, next) => {
     try {
-        console.log("Here Here arsh")
-        const user = await User.findById(req.params.id)
-        res.status(200).json(user)
-    }
-    catch(error) {
-        next(error)
+        const { firebase_uid } = req.params;
+        // Use findOne with the appropriate query to find the user by firebase_uid
+        const user = await User.findOne({ firebase_uid : firebase_uid });
+        
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.status(200).json(user);
+    } 
+    catch (error) {
+        next(error);
     }
 }
 

@@ -14,6 +14,7 @@ import About from "./pages/About"
 import AccountSetting from "./pages/AccountSetting"
 
 import "./App.css"
+import AdminDashboard from "./pages/AdminDashboard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,8 +24,8 @@ const router = createBrowserRouter(
         <Route path="signin" element={<SignIn />} />
         <Route path="league-registration" element={<LeagueRegistration />} />
         <Route path="about" element={<About />} />
-        <Route path="accountSetting" element={<AccountSetting />} />
-
+        <Route path="account-setting" element={<AccountSetting />} />
+        <Route path="dashboard" element={<AdminDashboard />} />
         {/* <Route path="home" element={<Dashboard />} /> */}
 
       </Route>

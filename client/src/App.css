@@ -26,3 +26,24 @@ color: #a3a3a3;
 font-size: 14px;
 font-weight: lighter;
 }
+
+.user-status {
+    padding: 7px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.user-status-inactive {
+    background: red;
+}
+
+.user-status-active {
+    background: green;
+}
+
+.user-status:hover {
+    font-weight: bold;
+}

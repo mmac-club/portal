@@ -15,7 +15,7 @@ router.put("/:id", updateUser)
 router.delete("/:id", deleteUser)
 
 // GET
-router.get("/:id", getUser)
+router.get("/:firebase_uid", getUser)
 
 // GET ALL
 router.get("/", getAllUsers)

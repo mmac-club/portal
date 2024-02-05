@@ -102,7 +102,10 @@ const PaymentHandler = ({amount, selectedPlan, onClose, openPaymentResponseModal
                     if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
                     // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
                     // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
-                        return actions.restart();
+                        // return actions.restart();
+                        throw new Error(
+                            `${errorDetail.description} (${orderData.debug_id})`,
+                        );
                     } else if (errorDetail) {
                     // (2) Other non-recoverable errors -> Show a failure message
                         throw new Error(

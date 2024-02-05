@@ -28,42 +28,41 @@ const AdminDashboard = () => {
      * @todo: Fetch Data from API using fetch/axios and set the result into setUsers
      * 
      *  */ 
-
-    setUsers([{
-        email: "johndoe@gmail.com",
-        age: 25,
-        phone: "+1 514 123 1234",
-        address: "160 Saint Mathieu, Montreal - H3H 2P4",
-        created: "26-12-23",
-        plan: "Summer",
-        enrolled_on: "26-12-23",
-        expire_on: "26-12-24",
-        account_type: "Self",
-        status: "active"
-    },{
-        email: "johndoe@gmail.com",
-        age: 25,
-        phone: "+1 514 123 1234",
-        address: "160 Saint Mathieu, Montreal - H3H 2P4",
-        created: "26-12-23",
-        plan: "Summer",
-        enrolled_on: "26-12-23",
-        expire_on: "26-12-24",
-        account_type: "Self",
-        status: "active"
-    },{
-        email: "johndoe@gmail.com",
-        age: 25,
-        phone: "+1 514 123 1234",
-        address: "160 Saint Mathieu, Montreal - H3H 2P4",
-        created: "26-12-23",
-        plan: "Summer",
-        enrolled_on: "26-12-23",
-        expire_on: "26-12-24",
-        account_type: "Self",
-        status: "inactive"
-    }])
-  }, [])
+        setUsers([{
+            email: "johndoe@gmail.com",
+            age: 25,
+            phone: "+1 514 123 1234",
+            address: "160 Saint Mathieu, Montreal - H3H 2P4",
+            created: "26-12-23",
+            plan: "Summer",
+            enrolled_on: "26-12-23",
+            expire_on: "26-12-24",
+            account_type: "Self",
+            status: "active"
+        },{
+            email: "johndoe@gmail.com",
+            age: 25,
+            phone: "+1 514 123 1234",
+            address: "160 Saint Mathieu, Montreal - H3H 2P4",
+            created: "26-12-23",
+            plan: "Summer",
+            enrolled_on: "26-12-23",
+            expire_on: "26-12-24",
+            account_type: "Self",
+            status: "active"
+        },{
+            email: "johndoe@gmail.com",
+            age: 25,
+            phone: "+1 514 123 1234",
+            address: "160 Saint Mathieu, Montreal - H3H 2P4",
+            created: "26-12-23",
+            plan: "Summer",
+            enrolled_on: "26-12-23",
+            expire_on: "26-12-24",
+            account_type: "Self",
+            status: "inactive"
+        }])
+    }, [])
 
   useEffect(() => {
     let x = users.reduce((res, user) => {

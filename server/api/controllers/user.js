@@ -12,18 +12,18 @@ export const createUser = async (req, res, next) => {
     }
 }
 
-export const updateUser = async (req, res, next) => {
-    try {
-        const updatedUser = await User.findByIdAndUpdate(req.params.id, {
-            $set: req.body
-        }, 
-        { new: true })
-        res.status(200).json("User has been Updated.")
-    }
-    catch(error) {
-        next(error)
-    }
-}
+// export const updateUser = async (req, res, next) => {
+//     try {
+//         const updatedUser = await User.findByIdAndUpdate(req.params.id, {
+//             $set: req.body
+//         }, 
+//         { new: true })
+//         res.status(200).json("User has been Updated.")
+//     }
+//     catch(error) {
+//         next(error)
+//     }
+// }
 
 export const deleteUser = async (req, res, next) => {
     try {
@@ -59,5 +59,30 @@ export const getAllUsers = async (req, res, next) => {
     }
     catch(error) {
         next(error)
+    }
+}
+
+export const updateUser = async (req, res, next) => {
+    try {
+        const { firebase_uid } = req.params;
+        console.log(firebase_uid)
+        
+        // Use findOne with the appropriate query to find the user by firebase_uid
+        const user = await User.findOne({ firebase_uid: firebase_uid });
+        console.log(user)
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Update user data with the request body
+        Object.assign(user, req.body);
+
+        // Save the updated user
+        await user.save();
+
+        res.status(200).json({ message: 'User has been updated successfully.' });
+    } catch (error) {
+        next(error);
     }
 }

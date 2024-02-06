@@ -1,6 +1,7 @@
 import React from 'react'
 import {  useState } from 'react'
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { useAuth } from '../services/AuthService/AuthContext';
 
 // Renders errors or successfull transactions on the screen.
 function Message({ status, message, onClose, openPaymentResponseModal }) {
@@ -30,6 +31,8 @@ const PaymentHandler = ({amount, selectedPlan, planFor, onClose, openPaymentResp
         onClose();
         openPaymentResponseModal(status);
     }
+
+    const {currentUser} = useAuth();
 
     return (
     <div>
@@ -82,6 +85,8 @@ const PaymentHandler = ({amount, selectedPlan, planFor, onClose, openPaymentResp
                 }}
                 onApprove={async (data, actions) => {
                 try {
+
+                    
                     const response = await fetch(
                         `http://localhost:3000/payment/orders/${data.orderID}/capture`,
                         {
@@ -95,7 +100,7 @@ const PaymentHandler = ({amount, selectedPlan, planFor, onClose, openPaymentResp
                                 cart: [
                                 {
                                     id: selectedPlan,
-                                    userId: "harsh@gmail.com",
+                                    userId: currentUser.uid,
                                     amount: amount,
                                     planFor: planFor
                                 },

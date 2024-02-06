@@ -1,6 +1,7 @@
 import React from 'react'
 import {  useState } from 'react'
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { useAuth } from '../services/AuthService/AuthContext';
 
 // Renders errors or successfull transactions on the screen.
 function Message({ status, message, onClose, openPaymentResponseModal }) {
@@ -10,7 +11,7 @@ function Message({ status, message, onClose, openPaymentResponseModal }) {
     // return status ? <PaymentConfirmation status={status} content={message} onClose={onClose}/> : "";
   }
 
-const PaymentHandler = ({amount, selectedPlan, onClose, openPaymentResponseModal}) => {
+const PaymentHandler = ({amount, selectedPlan, planFor, onClose, openPaymentResponseModal}) => {
 
     const initialOptions = {
         "client-id": "Ab3clPu_33eKE8Fi5A29tFOyhvrVVsJdXaL4vNqIC1Mxxf7JZhcMkgZdosMzovg9_BkDIlzt-1Kq-Mwn",
@@ -30,6 +31,8 @@ const PaymentHandler = ({amount, selectedPlan, onClose, openPaymentResponseModal
         onClose();
         openPaymentResponseModal(status);
     }
+
+    const {currentUser} = useAuth();
 
     return (
     <div>
@@ -54,6 +57,7 @@ const PaymentHandler = ({amount, selectedPlan, onClose, openPaymentResponseModal
                         {
                             id: selectedPlan,
                             amount: amount,
+                            planFor: planFor
                         },
                         ],
                     }),
@@ -81,6 +85,8 @@ const PaymentHandler = ({amount, selectedPlan, onClose, openPaymentResponseModal
                 }}
                 onApprove={async (data, actions) => {
                 try {
+
+                    
                     const response = await fetch(
                         `http://localhost:3000/payment/orders/${data.orderID}/capture`,
                         {
@@ -88,6 +94,18 @@ const PaymentHandler = ({amount, selectedPlan, onClose, openPaymentResponseModal
                             headers: {
                             "Content-Type": "application/json",
                             },
+                    // use the "body" param to optionally pass additional order information
+                    // like product ids and quantities
+                    body: JSON.stringify({
+                                cart: [
+                                {
+                                    id: selectedPlan,
+                                    userId: currentUser.uid,
+                                    amount: amount,
+                                    planFor: planFor
+                                },
+                                ],
+                            })
                         },
                     );
 
@@ -102,7 +120,10 @@ const PaymentHandler = ({amount, selectedPlan, onClose, openPaymentResponseModal
                     if (errorDetail?.issue === "INSTRUMENT_DECLINED") {
                     // (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
                     // recoverable state, per https://developer.paypal.com/docs/checkout/standard/customize/handle-funding-failures/
-                        return actions.restart();
+                        // return actions.restart();
+                        throw new Error(
+                            `${errorDetail.description} (${orderData.debug_id})`,
+                        );
                     } else if (errorDetail) {
                     // (2) Other non-recoverable errors -> Show a failure message
                         throw new Error(

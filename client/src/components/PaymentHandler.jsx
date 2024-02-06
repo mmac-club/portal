@@ -10,7 +10,7 @@ function Message({ status, message, onClose, openPaymentResponseModal }) {
     // return status ? <PaymentConfirmation status={status} content={message} onClose={onClose}/> : "";
   }
 
-const PaymentHandler = ({amount, selectedPlan, onClose, openPaymentResponseModal}) => {
+const PaymentHandler = ({amount, selectedPlan, planFor, onClose, openPaymentResponseModal}) => {
 
     const initialOptions = {
         "client-id": "Ab3clPu_33eKE8Fi5A29tFOyhvrVVsJdXaL4vNqIC1Mxxf7JZhcMkgZdosMzovg9_BkDIlzt-1Kq-Mwn",
@@ -54,6 +54,7 @@ const PaymentHandler = ({amount, selectedPlan, onClose, openPaymentResponseModal
                         {
                             id: selectedPlan,
                             amount: amount,
+                            planFor: planFor
                         },
                         ],
                     }),
@@ -88,6 +89,18 @@ const PaymentHandler = ({amount, selectedPlan, onClose, openPaymentResponseModal
                             headers: {
                             "Content-Type": "application/json",
                             },
+                    // use the "body" param to optionally pass additional order information
+                    // like product ids and quantities
+                    body: JSON.stringify({
+                                cart: [
+                                {
+                                    id: selectedPlan,
+                                    userId: "harsh@gmail.com",
+                                    amount: amount,
+                                    planFor: planFor
+                                },
+                                ],
+                            })
                         },
                     );
 

@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import "dotenv/config";
+import Payment from  "../models/Payment.js"
 
 const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PORT = 8888 } = process.env;
 const base = "https://api-m.sandbox.paypal.com";
@@ -111,7 +112,13 @@ export const order = async (req, res, next) => {
 export const capture = async (req, res, next) => {
   try {
     const orderID  = req.params.id;
+    const params = req.body.cart[0];
     const { jsonResponse, httpStatusCode } = await captureOrder(orderID);
+    const payResponse = await createPayment({
+      userId: params.userId,
+      transactionId: jsonResponse.id || jsonResponse.debug_id,
+      transactionStatus: jsonResponse.status || jsonResponse.name
+    })
     res.status(httpStatusCode).json(jsonResponse);
   } catch (error) {
     console.error("Failed to create order:", error);
@@ -136,3 +143,14 @@ async function handleResponse(response) {
   }
 };
 
+export const createPayment = async (paymentData) => {
+  const newPayment = new Payment(paymentData) 
+  console.log(newPayment)
+  try {
+      await newPayment.save()
+      console.log("message: Payment has been created.")
+  }
+  catch(error) {
+      console.log("Problem with adding payment")
+  }
+}

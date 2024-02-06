@@ -87,6 +87,7 @@ export default function LeagueRegistration() {
     const paymentResponseModal = useDisclosure()
     const [selectedPlan, setPlanValue] = useState(0)
     const [paymentResonse, setPaymentResponse] = useState('')
+    const [planFor, setPlanFor] = useState("")
 
 
     const changePlan = (planIndex) => {
@@ -97,6 +98,11 @@ export default function LeagueRegistration() {
     const changePaymentResponse= (status) => {
         setPaymentResponse(status);
         paymentResponseModal.onOpen();
+    }
+
+    const changePlanFor = (e) => {
+        console.log(e.target.value)
+        setPlanFor(e.target.value)
     }
 
     return (
@@ -129,7 +135,7 @@ export default function LeagueRegistration() {
                                     <Tr>
                                         <Td fontWeight={'bold'}>Plan For</Td>
                                         <Td>
-                                            <Select>
+                                            <Select name="planType" value={planFor} onChange={changePlanFor} required>
                                                 <option value=''>Select Plan</option>
                                                 <option value='self'>Self</option>
                                                 <option value='Kid'>Kid</option>
@@ -139,7 +145,8 @@ export default function LeagueRegistration() {
                                 </Tbody>
                             </Table>
                         </TableContainer>
-                        <PaymentHandler amount={plans[selectedPlan].price} selectedPlan={selectedPlan} onClose={paymentModal.onClose} openPaymentResponseModal={changePaymentResponse}/>
+                        
+                        { planFor ? <PaymentHandler amount={plans[selectedPlan].price} selectedPlan={selectedPlan} planFor={planFor}  onClose={paymentModal.onClose} openPaymentResponseModal={changePaymentResponse}/> : ""} 
                     </ModalBody>
 
                     <ModalFooter>

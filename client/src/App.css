@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'Mordern Era';
+    src: url("./fonts/MordernEra/ModernEra/ModernEra.ttf");
+}
+
+@font-face {
+    font-family: 'Teimpos Headline';
+    src: url("./fonts/Tiempos-Font/TiemposHeadline-Medium.otf");
+}
+
+.price {
+    position: relative;
+    font-family: 'Mordern Era';
+    font-size: 4rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+.price sub {
+position: absolute;
+bottom: 14px;
+color: #a3a3a3;
+font-size: 14px;
+font-weight: lighter;
+}
+
+.user-status {
+    padding: 7px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.user-status-inactive {
+    background: red;
+}
+
+.user-status-active {
+    background: green;
+}
+
+.user-status:hover {
+    font-weight: bold;
+}

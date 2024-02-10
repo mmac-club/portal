@@ -13,6 +13,8 @@ import {
   Text,
   useColorModeValue,
   Select,
+  Checkbox,
+  Image,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -20,7 +22,7 @@ import { useAuth } from "../services/AuthService/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const messageError = {};
@@ -38,7 +40,7 @@ export default function SignUp() {
     gender: "",
     phoneNumber: "",
     postalCode: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
   const [validationErrors, setValidationErrors] = useState({}); // State to hold validation errors
   const [validationMessageErrors, setValidationMessageErrors] = useState({});
@@ -87,10 +89,10 @@ export default function SignUp() {
 
     try {
       await signup(user);
-      navigate("/")
+      navigate("/");
     } catch (error) {
-      messageError.fromFirebase = error
-      setValidationMessageErrors(messageError)
+      messageError.fromFirebase = error;
+      setValidationMessageErrors(messageError);
       return;
     }
     setLoading(false);
@@ -162,26 +164,30 @@ export default function SignUp() {
   }
 
   return (
-    <Flex
-      height={"calc(100vh - 70px)"}
-      align={"center"}
-      justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
+    <Stack
+      direction={{ base: "column", md: "row" }}
+      maxH="100vh"
+      overflowY="auto"
     >
-      <Stack spacing={2} mx={"auto"} maxW={"lg"} py={8} px={1}>
-        <Stack align={"center"}>
-          <Heading fontSize={"4xl"} textAlign={"center"}>
-            Sign up
-          </Heading>
-        </Stack>
-
-        <Box
-          rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
-          boxShadow={"2xl"}
-          p={8}
-        >
-          {/* Error box */}
+      <Flex flex={1}>
+        <Image
+          alt={"Login Image"}
+          objectFit={"cover"}
+          rounded={"2xl"}
+          src={"././illustration-2.jpeg"}
+        />
+      </Flex>
+      <Flex p={5} flex={1} align={"center"} justify={"center"}>
+        <Stack spacing={4} h={"full"} w={"full"} maxW={"xl"}>
+          <Box borderRadius={"md"}>
+            <Heading
+              textAlign={"center"}
+              fontWeight={"semibold"}
+              fontSize={"3rem"}
+            >
+              Sign Up
+            </Heading>
+          </Box>
           {Object.keys(validationMessageErrors).length > 0 && (
             <Box
               bg="red.100" // Background color for the error box
@@ -189,6 +195,7 @@ export default function SignUp() {
               mb={2} // Margin bottom for spacing
               borderRadius="md" // Rounded corners
               display="flex"
+              rounded={"3xl"}
             >
               <ul>
                 {Object.keys(validationMessageErrors).map((fieldName) => (
@@ -203,170 +210,220 @@ export default function SignUp() {
               </ul>
             </Box>
           )}
-
-          <Stack spacing={3}>
-            <HStack>
-              <Box>
-                <FormControl id="firstName" isRequired>
-                  <FormLabel>First Name</FormLabel>
-                  <Input
-                    type="text"
-                    name="firstName"
-                    value={user.firstName}
-                    onChange={handleInputChange}
-                    isInvalid={validationErrors.firstName}
-                  />
-                </FormControl>
-              </Box>
-              <Box>
-                <FormControl id="lastName">
-                  <FormLabel>Last Name</FormLabel>
-                  <Input
-                    type="text"
-                    name="lastName"
-                    value={user.lastName}
-                    onChange={handleInputChange}
-                    isInvalid={validationErrors.lastName}
-                  />
-                </FormControl>
-              </Box>
-            </HStack>
-            <FormControl id="email" isRequired>
-              <FormLabel>Email address</FormLabel>
+          <HStack>
+            <FormControl id="firstName" isRequired>
+              <FormLabel fontWeight="bold">First Name</FormLabel>
               <Input
-                type="email"
-                name="email"
-                value={user.email}
+                type="text"
+                name="firstName"
+                variant='filled' 
+                rounded="2xl"
+                value={user.firstName}
                 onChange={handleInputChange}
-                isInvalid={validationErrors.email || validationMessageErrors.email}
+                isInvalid={validationErrors.firstName}
+                fontSize="sm" // Add this line to set the font size to large
+                size="sm" // Add this line to set the size to medium
               />
             </FormControl>
 
-            <HStack>
-              {/* Add Date of birth */}
-              <FormControl id="dateOfBirth" isRequired>
-                <FormLabel>Date of Birth</FormLabel>
-                <Input
-                  type="date"
-                  placeholder="yyyy/mm/dd"
-                  name="dateOfBirth"
-                  value={user.dateOfBirth}
-                  onChange={handleInputChange}
-                  isInvalid={validationErrors.dateOfBirth}
-                />
-              </FormControl>
-              {/* Add Gender */}
-              <FormControl id="gender" isRequired>
-                <FormLabel>Gender</FormLabel>
-                <Select
-                  placeholder="Select your gender"
-                  name="gender"
-                  value={user.gender}
-                  onChange={handleInputChange}
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                </Select>
-              </FormControl>
-            </HStack>
-            <HStack>
-              <FormControl id="phoneNumber" isRequired>
-                <FormLabel>Phone No.</FormLabel>
-                <Input
-                  type="tel"
-                  placeholder="Enter Phone Number"
-                  name="phoneNumber"
-                  value={user.phoneNumber}
-                  onChange={handleInputChange}
-                  isInvalid={validationErrors.phoneNumber || validationMessageErrors.phoneNumber}
-                />
-              </FormControl>
-              {/* Add Postal Code */}
-              <FormControl id="postalCode" isRequired>
-                <FormLabel>Postal Code</FormLabel>
-                <Input
-                  type="text"
-                  placeholder="6 Digit Postal Code"
-                  name="postalCode"
-                  value={user.postalCode}
-                  onChange={handleInputChange}
-                  isInvalid={validationErrors.postalCode || validationMessageErrors.postalCode}
-                />
-              </FormControl>
-              {/* Add Phone Number */}
-            </HStack>
-            <FormControl id="password" isRequired>
-              <FormLabel>Password</FormLabel>
-              <InputGroup>
-                <Input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={user.password}
-                  onChange={handleInputChange}
-                  isInvalid={validationErrors.password || validationMessageErrors.password}
-                />
-                <InputRightElement h={"full"}>
-                  <Button
-                    variant={"ghost"}
-                    disabled
-                    onMouseDown={() => setShowPassword(true)}
-                    onMouseUp={() => setShowPassword(false)}
-                    onMouseLeave={() => setShowPassword(false)}
-                  >
-                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
+            <FormControl id="lastName">
+              <FormLabel fontWeight="bold">Last Name</FormLabel>
+              <Input
+                type="text"
+                name="lastName"
+                variant='filled' 
+                rounded="2xl"
+                value={user.lastName}
+                onChange={handleInputChange}
+                isInvalid={validationErrors.lastName}
+                fontSize="sm" // Add this line to set the font size to large
+                size="sm" // Add this line to set the size to medium
+              />
             </FormControl>
-            <FormControl id="password" isRequired>
-              <FormLabel>Confirm Password</FormLabel>
-              <InputGroup>
-                <Input
-                  type={showConfirmPassword ? "text" : "password"}
-                  name="confirmPassword"
-                  value={user.confirmPassword}
-                  onChange={handleInputChange}
-                  isInvalid={validationErrors.confirmPassword || validationMessageErrors.confirmPassword}
-                />
-                <InputRightElement h={"full"}>
-                  <Button
-                    variant={"ghost"}
-                    disabled
-                    onMouseDown={() => setShowConfirmPassword(true)}
-                    onMouseUp={() => setShowConfirmPassword(false)}
-                    onMouseLeave={() => setShowConfirmPassword(false)}
-                  >
-                    {showConfirmPassword ? <ViewIcon /> : <ViewOffIcon />}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
+          </HStack>
+          <FormControl id="email" isRequired>
+            <FormLabel fontWeight="bold">Email address</FormLabel>
+            <Input
+              type="email"
+              name="email"
+              variant='filled' 
+              rounded="2xl"
+              value={user.email}
+              onChange={handleInputChange}
+              fontSize="sm" // Add this line to set the font size to large
+              size="sm" // Add this line to set the size to medium
+              isInvalid={
+                validationErrors.email || validationMessageErrors.email
+              }
+            />
+          </FormControl>
+          <HStack>
+            {/* Add Date of birth */}
+            <FormControl id="dateOfBirth" isRequired>
+              <FormLabel fontWeight="bold">Date of Birth</FormLabel>
+              <Input
+                type="date"
+                name="dateOfBirth"
+                variant='filled' 
+                rounded="2xl"
+                value={user.dateOfBirth}
+                onChange={handleInputChange}
+                fontSize="sm" // Add this line to set the font size to large
+                size="sm" // Add this line to set the size to medium
+                isInvalid={validationErrors.dateOfBirth}
+              />
             </FormControl>
-
-            <Stack spacing={10} pt={2}>
-              <Button
-                disabled={loading}
-                loadingText="Submitting"
-                size="lg"
-                bg={"blue.400"}
-                color={"white"}
-                _hover={{
-                  bg: "blue.500",
-                }}
-                type="submit"
-                onClick={handleSubmit}
+            {/* Add Gender */}
+            <FormControl id="gender" isRequired>
+              <FormLabel fontWeight="bold">Gender</FormLabel>
+              <Select
+                placeholder="Select your gender"
+                name="gender"
+                variant='filled' 
+                rounded="2xl"
+                value={user.gender}
+                onChange={handleInputChange}
+                fontSize="sm" // Add this line to set the font size to large
+                size="sm" // Add this line to set the size to medium
               >
-                Sign up
-              </Button>
-            </Stack>
-            <Stack pt={6}>
-              <Text align={"center"}>
-                Already a user? <Link to="/signin" style={{color: '#4299E1'}} >Login</Link>
-              </Text>
-            </Stack>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </Select>
+            </FormControl>
+          </HStack>
+          <HStack>
+            <FormControl id="phoneNumber" isRequired>
+              <FormLabel fontWeight="bold">Phone No.</FormLabel>
+              <Input
+                type="tel"
+                placeholder="Enter Phone Number"
+                variant='filled' 
+                rounded="2xl"
+                name="phoneNumber"
+                value={user.phoneNumber}
+                onChange={handleInputChange}
+                fontSize="sm" // Add this line to set the font size to large
+                size="sm" // Add this line to set the size to medium
+                isInvalid={
+                  validationErrors.phoneNumber ||
+                  validationMessageErrors.phoneNumber
+                }
+              />
+            </FormControl>
+            {/* Add Postal Code */}
+            <FormControl id="postalCode" isRequired>
+              <FormLabel fontWeight="bold">Postal Code</FormLabel>
+              <Input
+                type="text"
+                placeholder="6 Digit Postal Code"
+                name="postalCode"
+                variant='filled' 
+                rounded="2xl"
+                value={user.postalCode}
+                onChange={handleInputChange}
+                fontSize="sm" // Add this line to set the font size to large
+                size="sm" // Add this line to set the size to medium
+                isInvalid={
+                  validationErrors.postalCode ||
+                  validationMessageErrors.postalCode
+                }
+              />
+            </FormControl>
+            {/* Add Phone Number */}
+          </HStack>
+          <FormControl id="password" isRequired>
+            <FormLabel fontWeight="bold">Password</FormLabel>
+            <InputGroup>
+              <Input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                variant='filled' 
+                rounded="2xl"
+                value={user.password}
+                onChange={handleInputChange}
+                fontSize="sm" // Add this line to set the font size to large
+                size="sm" // Add this line to set the size to medium
+                isInvalid={
+                  validationErrors.password || validationMessageErrors.password
+                }
+              />
+              <InputRightElement h={"full"}>
+                <Button
+                  variant={"filled"}
+                  disabled
+                  onMouseDown={() => setShowPassword(true)}
+                  onMouseUp={() => setShowPassword(false)}
+                  onMouseLeave={() => setShowPassword(false)}
+                >
+                  {showPassword ? <ViewIcon /> : <ViewOffIcon />}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+          </FormControl>
+          <FormControl id="password" isRequired>
+            <FormLabel fontWeight="bold">Confirm Password</FormLabel>
+            <InputGroup>
+              <Input
+                type={showConfirmPassword ? "text" : "password"}
+                name="confirmPassword"
+                variant='filled' 
+                rounded="2xl"
+                value={user.confirmPassword}
+                onChange={handleInputChange}
+                fontSize="sm" // Add this line to set the font size to large
+                size="sm" // Add this line to set the size to medium
+                isInvalid={
+                  validationErrors.confirmPassword ||
+                  validationMessageErrors.confirmPassword
+                }
+              />
+              <InputRightElement h={"full"}>
+                <Button
+                  variant={"filled"}
+                  disabled
+                  onMouseDown={() => setShowConfirmPassword(true)}
+                  onMouseUp={() => setShowConfirmPassword(false)}
+                  onMouseLeave={() => setShowConfirmPassword(false)}
+                >
+                  {showConfirmPassword ? <ViewIcon /> : <ViewOffIcon />}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+          </FormControl>
+          <Stack spacing={6}>
+            {/* <Stack
+              direction={{ base: "column", sm: "row" }}
+              align={"start"}
+              justify={"space-between"}
+            >
+              <Checkbox>Remember me</Checkbox>
+              <Text color={"blue.500"}>Forgot password?</Text>
+            </Stack> */}
+            <Button
+              disabled={loading}
+              loadingText="Submitting"
+              bg={"#67295F"}
+              color={"white"}
+              variant='filled' 
+              rounded="3xl"
+              _hover={{
+                bg: "#4C1C46",
+              }}
+              type="submit"
+              onClick={handleSubmit}
+            >
+              Sign up
+            </Button>
+            <Text align={"center"}>
+              Already a user?{" "}
+              <Link to="/signin" style={{ color: "#67295F" }}>
+                Login
+              </Link>{" "}
+            </Text>
           </Stack>
-        </Box>
-      </Stack>
-    </Flex>
+        </Stack>
+      </Flex>
+    </Stack>
   );
 }

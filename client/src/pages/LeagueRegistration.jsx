@@ -110,7 +110,7 @@ export default function LeagueRegistration() {
             <Modal closeOnOverlayClick={false} isOpen={paymentModal.isOpen} onClose={paymentModal.onClose} isCentered>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>Selected Plan</ModalHeader>
+                    <ModalHeader fontWeight={'medium'} fontFamily={'Teimpos Headline'}>Selected Plan</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
                         <TableContainer mb={'50px'} overflow={'hidden'}>
@@ -122,7 +122,7 @@ export default function LeagueRegistration() {
                                     </Tr>
                                     <Tr>
                                         <Td  fontWeight={'bold'}>Price</Td>
-                                        <Td>$ {plans[selectedPlan] && plans[selectedPlan].price}</Td>
+                                        <Td>${plans[selectedPlan] && plans[selectedPlan].price}</Td>
                                     </Tr>
                                     <Tr>
                                         <Td fontWeight={'bold'}>Date</Td>
@@ -189,7 +189,6 @@ export default function LeagueRegistration() {
                         
                 </SimpleGrid>
             </Box>
-            
         </>
     )
 }

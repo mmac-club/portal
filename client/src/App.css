@@ -1,20 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300&display=swap');
-
-
 @font-face {
-    font-family: 'integralcd-regular';
-    src: url("../public/Integral-CF/Fontspring-DEMO-integralcf-regular.otf");
+    font-family: 'Mordern Era';
+    src: url("./fonts/MordernEra/ModernEra/ModernEra.ttf");
 }
 
-
-* {
-    font-family: 'Montserrat', sans-serif;
+@font-face {
+    font-family: 'Teimpos Headline';
+    src: url("./fonts/Tiempos-Font/TiemposHeadline-Medium.otf");
 }
 
 .price {
     position: relative;
-    color: rgba(9, 53, 107, 0.7);
-    font-size: 60px;
+    font-family: 'Mordern Era';
+    font-size: 4rem;
     font-weight: bold;
     text-align: center;
   }

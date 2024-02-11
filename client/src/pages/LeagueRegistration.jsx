@@ -161,18 +161,15 @@ export default function LeagueRegistration() {
                     <ModalBody>
                         <PaymentConfirmation status={paymentResonse}/>
                     </ModalBody>
-
                     <ModalFooter>
                     </ModalFooter>
                 </ModalContent>
             </Modal>
-            
-            <Box
-                display='flex'
-                h={"calc(100vh - 70px)"}
-                justifyContent={"center"}
+            <Flex
+                justify={"center"}
+                align={"center"}
                 bg={useColorModeValue("gray.50", "gray.800")}
-                alignItems={"center"}
+                minH={"90vh"}
             >
                 <SimpleGrid
                     columns={{ base: 1, md: 2, lg: 4 }} 
@@ -188,7 +185,8 @@ export default function LeagueRegistration() {
                         }
                         
                 </SimpleGrid>
-            </Box>
+                
+            </Flex>
         </>
     )
 }

@@ -181,8 +181,9 @@ export default function SignUp() {
         <Stack spacing={4} h={"full"} w={"full"} maxW={"xl"}>
           <Box borderRadius={"md"}>
             <Heading
+              fontFamily={'Teimpos Headline'}
               textAlign={"center"}
-              fontWeight={"semibold"}
+              fontWeight={300}
               fontSize={"3rem"}
             >
               Sign Up

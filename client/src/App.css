@@ -7,6 +7,37 @@
     font-family: 'Teimpos Headline';
     src: url("./fonts/Tiempos-Font/TiemposHeadline-Medium.otf");
 }
+@font-face {
+    font-family: 'Teimpos Headline Italics';
+    src: url("./fonts/Tiempos-Font/TiemposHeadline-MediumItalic.otf");
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.slide-up {
+    animation: slide-up 2s ease-out;
+}
+
+.slide-down {
+    animation: slide-down 2s ease-out;
+}
+
 
 .price {
     position: relative;
@@ -14,8 +45,8 @@
     font-size: 4rem;
     font-weight: bold;
     text-align: center;
-  }
-  
+}
+
 .price sub {
 position: absolute;
 bottom: 14px;

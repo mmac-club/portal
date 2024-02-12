@@ -25,21 +25,21 @@ const PaymentSchema = new mongoose.Schema(
       type: String
     },
     planStartDate: {
-      type: String
+      type: Date
     },
     planEndDate: {
-      type: String
+      type: Date
     },
-    planCharge: {
+    planPrice: {
       type: Number
     },
-    userEmail: {
+    payerEmail: {
       type: String
     },
     payerFullName: {
       type: String
     },
-    userBillingAddress: {
+    payerBillingAddress: {
       type: Object
     }
   },

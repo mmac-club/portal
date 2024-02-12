@@ -58,6 +58,8 @@ export default function LeagueRegistration() {
       price: "150",
       time: "21:00 - 23:00",
       date: "2024-01-12 To 2024-05-03",
+      start_date: "2024-01-12",
+      end_date: "2024-05-03",
       address:
         "Cegep di Vieux Montreal 5th floor - 255 Ontario St E, Montreal, Quebec H2X 1X6",
     },
@@ -66,6 +68,8 @@ export default function LeagueRegistration() {
       price: "150",
       time: "10:00 - 12:00",
       date: "2024-01-14 To 2024-05-05",
+      start_date: "2024-01-14",
+      end_date:"2024-05-05",
       address:
         "Cegep di Vieux Montreal 5th floor - 255 Ontario St E, Montreal, Quebec H2X 1X6",
     },
@@ -74,6 +78,8 @@ export default function LeagueRegistration() {
       price: "15",
       time: "10:00 - 12:00",
       date: "2024-01-14 To 2024-05-05 (Any one Sunday)",
+      start_date: "2024-01-14",
+      end_date:"2024-05-05",
       address:
         "Cegep di Vieux Montreal 5th floor - 255 Ontario St E, Montreal, Quebec H2X 1X6",
     },
@@ -82,6 +88,8 @@ export default function LeagueRegistration() {
       price: "15",
       time: "10:00 - 12:00",
       date: "2024-01-14 To 2024-05-05 (Any one Friday)",
+      start_date: "2024-01-14",
+      end_date:"2024-05-05",
       address:
         "Cegep di Vieux Montreal 5th floor - 255 Ontario St E, Montreal, Quebec H2X 1X6",
     },
@@ -90,6 +98,8 @@ export default function LeagueRegistration() {
       price: "650",
       time: "17:00 - 19:00",
       date: "2023-09-16 To 2024-05-11",
+      start_date: "2023-09-16",
+      end_date:"2024-05-11",
       address:
         "Cegep di Vieux Montreal 5th floor - 255 Ontario St E, Montreal, Quebec H2X 1X6",
     },
@@ -174,6 +184,9 @@ export default function LeagueRegistration() {
                 amount={plans[selectedPlan].price}
                 selectedPlan={selectedPlan}
                 planFor={planFor}
+                planStartDate={plans[selectedPlan].start_date}
+                planEndDate={plans[selectedPlan].end_date}
+                planType={plans[selectedPlan].type}
                 onClose={paymentModal.onClose}
                 openPaymentResponseModal={changePaymentResponse}
               />

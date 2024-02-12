@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
 import "dotenv/config";
 import Payment from  "../models/Payment.js"
+import { json } from "express";
 
 const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PORT = 8888 } = process.env;
 const base = "https://api-m.sandbox.paypal.com";
@@ -118,10 +119,17 @@ export const capture = async (req, res, next) => {
     console.log(jsonResponse)
     const payResponse = await createPayment({
       uid: params.userId,
-      paypal_payer_id: jsonResponse.payer_id,
+      paypal_payer_id: jsonResponse.payer.payer_id,
       transactionId: jsonResponse.id || jsonResponse.debug_id,
       transactionStatus: jsonResponse.status || jsonResponse.name,
-
+      planFor: params.planFor,
+      planType: params.planType,
+      planStartDate: params.planStartDate,
+      planEndDate: params.planEndDate,
+      planPrice: params.amount,
+      payerEmail: jsonResponse.payer.email_address,
+      payerFullName: jsonResponse.purchase_units[0].shipping.name.full_name,
+      payerBillingAddress: jsonResponse.purchase_units[0].shipping.address
     })
     res.status(httpStatusCode).json(jsonResponse);
   } catch (error) {

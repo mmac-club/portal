@@ -3,7 +3,7 @@ import {  useState } from 'react'
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useAuth } from '../services/AuthService/AuthContext';
 
-const PaymentHandler = ({amount, selectedPlan, planFor, onClose, openPaymentResponseModal}) => {
+const PaymentHandler = ({amount, selectedPlan, planFor, planStartDate, planEndDate, planType, onClose, openPaymentResponseModal}) => {
     const API_URL = import.meta.env.VITE_API_URL_DEV;
 
     const initialOptions = {
@@ -46,7 +46,10 @@ const PaymentHandler = ({amount, selectedPlan, planFor, onClose, openPaymentResp
                         {
                             id: selectedPlan,
                             amount: amount,
-                            planFor: planFor
+                            planFor: planFor,
+                            planType: planType,
+                            planStartDate: planStartDate,
+                            planEndDate: planEndDate
                         },
                         ],
                     }),
@@ -85,7 +88,10 @@ const PaymentHandler = ({amount, selectedPlan, planFor, onClose, openPaymentResp
                                     id: selectedPlan,
                                     userId: currentUser.uid,
                                     amount: amount,
-                                    planFor: planFor
+                                    planFor: planFor,
+                                    planType: planType,
+                                    planStartDate: planStartDate,
+                                    planEndDate: planEndDate
                                 },
                                 ],
                             })

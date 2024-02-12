@@ -41,7 +41,7 @@ export default class PaymentHandlerService {
     return body; // assuming the response body is the user details
   }
   async get_all_membership() {
-    const response = await fetch(this.API_URL + "/payment/orders/members", {
+    const response = await fetch(this.API_URL + "/payment/orders/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

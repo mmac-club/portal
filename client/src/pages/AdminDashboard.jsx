@@ -20,11 +20,13 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import UserManagementService from "../services/UserManagementService/UserManagement";
+import PaymentHandlerService from "../services/PaymentHandlerService/PaymentHandler";
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
   const [userStats, setUserStats] = useState({});
   const userManagementService = new UserManagementService();
+  const paymentHandlerService = new PaymentHandlerService();
 
   //   useEffect(() => {
   //     /**
@@ -75,11 +77,34 @@ const AdminDashboard = () => {
         console.log(response);
         setUsers(response);
 
+        const membership_response = await paymentHandlerService.get_all_membership();
+        const updatedUsers = response.map((user) => {
+            const membershipData = membership_response.find((membership) => membership.uid === user.firebase_uid);
+  
+            // If membershipData exists, unpack and add membership details to user object, else set to 'N/A'
+            if (membershipData) {
+              user = {
+                ...user,
+                currentPlan: membershipData.planType,
+                enrolledDate: membershipData.planStartDate,
+                expiryDate: membershipData.planEndDate,
+              };
+            }
+            return user;
+          });
+          console.log(membership_response)
+          setUsers(updatedUsers)
+
         // Calculate user statistics
-        let x = response.reduce(
+        let x = updatedUsers.reduce(
           (res, user) => {
-            res[user.status] += 1;
             res["total"] += 1;
+            console.log(user)
+            if (user.currentPlan) {
+              res["active"] += 1;
+            } else {
+              res["inactive"] += 1;
+            }
             return res;
           },
           {
@@ -155,8 +180,6 @@ const AdminDashboard = () => {
               <Th>Current Plan</Th>
               <Th>Enrolled Date</Th>
               <Th>Expiry Date</Th>
-              <Th>Account Type</Th>
-              <Th>Status</Th>
             </Tr>
           </Thead>
           <Tbody textAlign={"left"}>
@@ -177,15 +200,9 @@ const AdminDashboard = () => {
                   <td style={{ padding: "10px" }}>{user.phoneNumber}</td>
                   <td style={{ padding: "10px" }}>{user.postalCode}</td>
                   <td style={{ padding: "10px" }}>{user.createdAt}</td>
-                  <td style={{ padding: "10px" }}>{user.plan}</td>
-                  <td style={{ padding: "10px" }}>{user.enrolled_on}</td>
-                  <td style={{ padding: "10px" }}>{user.expire_on}</td>
-                  <td style={{ padding: "10px" }}>{user.account_type}</td>
-                  <td style={{ padding: "10px" }}>
-                    <span className={`user-status user-status-${user.status}`}>
-                      {user.status}
-                    </span>
-                  </td>
+                  <td style={{ padding: "10px" }}>{user.currentPlan || "N/A"}</td>
+                  <td style={{ padding: "10px" }}>{user.enrolledDate || "N/A"}</td>
+                  <td style={{ padding: "10px" }}>{user.expiryDate || "N/A"}</td>
                 </tr>
               );
             })}

@@ -1,7 +1,6 @@
 import fetch from "node-fetch";
 import "dotenv/config";
 import Payment from  "../models/Payment.js"
-import { json } from "express";
 
 const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PORT = 8888 } = process.env;
 const base = "https://api-m.sandbox.paypal.com";
@@ -161,5 +160,32 @@ export const createPayment = async (paymentData) => {
   }
   catch(error) {
       console.log("Problem with adding payment")
+  }
+}
+
+export const get_membership_details_by_id = async (req, res, next) => {
+  try {
+      const firebase_uid  = req.params.id;
+      const user = await Payment.find({ uid : firebase_uid });
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+      res.status(200).json(user);
+  } 
+  catch (error) {
+      next(error);
+  }
+}
+
+export const get_all_membership = async (req, res, next) => {
+  try {
+      const user = await Payment.find();
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+      res.status(200).json(user);
+  } 
+  catch (error) {
+      next(error);
   }
 }

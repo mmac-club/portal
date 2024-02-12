@@ -29,7 +29,7 @@ const router = createBrowserRouter(
       {/* <Route path="account-setting" element={<PrivateRoute path="account-setting" component={AccountSetting} />} /> */}
       <Route path="account-setting" element={<AccountSetting />} />
 
-      <Route path="dashboard" element={<PrivateRoute component={AdminDashboard} />} />
+      <Route path="dashboard" element={<AdminDashboard />} />
       {/* <Route path="home" element={<Dashboard />} /> */}
     </Route>
   )

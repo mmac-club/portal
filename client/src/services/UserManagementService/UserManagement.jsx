@@ -29,6 +29,17 @@ export default class UserManagementService {
     return body; // assuming the response body is the user details
   }
 
+  async get_all_users() {
+    const response = await fetch(this.API_URL + "/user/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const body = await response.json();
+    return body; // assuming the response body is the user details
+  }
+
   async update_user(firebase_uid, updatedData) {
     try {
       const response = await fetch(`${this.API_URL}/user/update/${firebase_uid}`, {

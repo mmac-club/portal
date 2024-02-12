@@ -25,7 +25,6 @@ import UserManagementService from "../services/UserManagementService/UserManagem
 import { ArrowForwardIcon, LockIcon } from "@chakra-ui/icons";
 import { useMediaQuery } from "@chakra-ui/react";
 
-
 const NavLink = ({ name, link }) => {
   return (
     <Box
@@ -36,9 +35,9 @@ const NavLink = ({ name, link }) => {
       background={"white"}
       _hover={{
         textDecoration: "none",
-        bg: useColorModeValue("#09356b"),
+        bg: useColorModeValue("#67295F"),
         color: "white",
-        transition: "all 0.5s ease",
+        transition: "all 0s ease",
       }}
       href={link}
     >
@@ -98,7 +97,7 @@ export default function Navbar() {
     }
   }
   async function handleSignIn() {
-      navigate("/signin");
+    navigate("/signin");
   }
 
   async function handleAccountSettings() {
@@ -107,15 +106,11 @@ export default function Navbar() {
 
   const Links = [
     { link: "/", name: "Home" },
-    { link: "/league-registration", name: "Registration" },
+    { link: "/league-registration", name: "Membership" },
     { link: "/about", name: "About Us" },
   ];
 
   const AdminLinks = [{ link: "/dashboard", name: "Dashboard" }];
-
-  const SignUp = [{ link: "/signup", name: "Sign In" }];
-
-  const SignIn = [{ link: "/signin", name: "Log In" }];
 
   console.log(currentUser);
   return (
@@ -150,7 +145,7 @@ export default function Navbar() {
               as={"nav"}
               spacing={4}
               fontSize={"16px"}
-              color={"#09356b"}
+              color={"#67295F"}
               fontWeight={"600"}
             >
               {userIsAdmin
@@ -191,10 +186,13 @@ export default function Navbar() {
                           variant="outline"
                         />
                         <MenuList>
-                          <MenuItem onClick={handleSignIn}>
-                              Log In
+                          <MenuItem onClick={handleSignIn}>Log In</MenuItem>
+                          <MenuItem
+                            style={{ color: "#67295F" }}
+                            onClick={handleSignUp}
+                          >
+                            Sign Up
                           </MenuItem>
-                          <MenuItem style={{ color: "#67295F" }} onClick={handleSignUp}>Sign Up</MenuItem>
                         </MenuList>
                       </Menu>
                     ) : (
@@ -204,19 +202,21 @@ export default function Navbar() {
                             Log In
                           </Link>
                         </Text>
-                        <Box
-                          as="a"
-                          px={2}
-                          py={1}
+                        <Button
+                          size={"sm"}
                           rounded={"md"}
                           background={"#67295F"}
                           onClick={handleSignUp}
+                          color={"white"}
                           marginRight={3}
+                          _hover={{
+                            transform: "scale(1.05)", // Increase the scale factor as needed
+                            transition: "transform 0.1s ease-in-out",
+                          }}
                         >
-                          <Text color={"white"}>
-                            Sign Up <ArrowForwardIcon />
-                          </Text>
-                        </Box>
+                          Sign Up
+                          <ArrowForwardIcon />
+                        </Button>
                       </>
                     )}
                   </HStack>
@@ -270,7 +270,7 @@ export default function Navbar() {
               borderRadius={"md"}
               background={"white"}
               fontSize={"16px"}
-              color={"#09356b"}
+              color={"#67295F"}
               fontWeight={"600"}
             >
               {Links.map((link) => (

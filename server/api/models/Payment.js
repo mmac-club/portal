@@ -3,9 +3,12 @@ const { Schema } = mongoose;
 
 const PaymentSchema = new mongoose.Schema(
   { 
-    userId: {
+    uid: {
         type: String,
         required: true
+    },
+    paypal_payer_id: {
+      type: String,
     },
     transactionId: {
         type: String,
@@ -14,6 +17,30 @@ const PaymentSchema = new mongoose.Schema(
     transactionStatus: {
         type: String,
         default: null
+    },
+    planFor: {
+      type:String
+    },
+    planType: {
+      type: String
+    },
+    planStartDate: {
+      type: String
+    },
+    planEndDate: {
+      type: String
+    },
+    planCharge: {
+      type: Number
+    },
+    userEmail: {
+      type: String
+    },
+    payerFullName: {
+      type: String
+    },
+    userBillingAddress: {
+      type: Object
     }
   },
   { timestamps: true }

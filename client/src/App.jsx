@@ -26,7 +26,9 @@ const router = createBrowserRouter(
       <Route path="signin" element={<SignIn />} />
       <Route path="league-registration" element={<LeagueRegistration />} />
       <Route path="about" element={<About />} />
-      <Route path="account-setting" element={<PrivateRoute component={AccountSetting} />} />
+      {/* <Route path="account-setting" element={<PrivateRoute path="account-setting" component={AccountSetting} />} /> */}
+      <Route path="account-setting" element={<AccountSetting />} />
+
       <Route path="dashboard" element={<PrivateRoute component={AdminDashboard} />} />
       {/* <Route path="home" element={<Dashboard />} /> */}
     </Route>

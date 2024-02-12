@@ -118,17 +118,23 @@ export default function CallToActionWithVideo() {
             We're MMAC
           </Heading>
           <Box
+            marginLeft={10}
             fontWeight={300}
             fontFamily={"Teimpos Headline Italics"}
             fontSize={{ base: "xl", sm: "3xl", lg: "3xl" }}
             lineHeight={1}
           >
             <Text as={"span"} position={"relative"} className="slide-up">
-              ALL for One
+              All for One,
             </Text>
             <br />
-            <Text marginLeft={110} as={"span"} color={"#913a86"} className="slide-down">
-              ONE for All
+            <Text
+              marginLeft={108}
+              as={"span"}
+              color={"#913a86"}
+              className="slide-down"
+            >
+              One for All
             </Text>
           </Box>
         </Stack>

@@ -414,12 +414,12 @@ export default function SignUp() {
               type="submit"
               onClick={handleSubmit}
             >
-              Sign up
+              Sign Up
             </Button>
             <Text align={"center"}>
               Already a user?{" "}
               <Link to="/signin" style={{ color: "#67295F" }}>
-                Login
+                Log In
               </Link>{" "}
             </Text>
           </Stack>

@@ -113,7 +113,7 @@ export default function SignIn() {
               fontWeight={300}
               fontSize={"3rem"}
               >
-                Login
+                Log In
               </Heading>
             </Box>
             {/* {JSON.stringify(currentUser)} */}

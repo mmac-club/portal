@@ -1,5 +1,5 @@
 export default class PaymentHandlerService {
-  API_URL = import.meta.env.VITE_API_URL_DEV;
+  API_URL = import.meta.env.VITE_API_URL_PROD;
 
   async orderData(selectedPlan, amount, planFor) {
     const response = await fetch("http://localhost:3000/payment/orders", {

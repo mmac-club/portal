@@ -1,6 +1,6 @@
 
 export default class UserManagementService {
-  API_URL = import.meta.env.VITE_API_URL_DEV;
+  API_URL = import.meta.env.VITE_API_URL_PROD;
 
   async register(data) {
     console.log(JSON.stringify(data))

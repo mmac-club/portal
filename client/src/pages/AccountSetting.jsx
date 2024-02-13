@@ -1,7 +1,7 @@
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import AccountSetting1 from "../components/AccountSetting";
 import MembershipDetails from "../components/MembershipDetails";
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 import UserManagementService from "../services/UserManagementService/UserManagement";
 import { useAuth } from "../services/AuthService/AuthContext";
 
@@ -9,10 +9,6 @@ const AccountSetting = () => {
   const userManagementService = new UserManagementService();
 
   const { currentUser } = useAuth(); // Ensure that useAuth() is providing the currentUser
-  const [userData, setUserData] = useState({});
-  const [editableData, setEditableData] = useState({});
-  const [isEditing, setIsEditing] = useState(false);
-  const [validationErrors, setValidationErrors] = useState({}); // State to track validation errors
 
   useEffect(() => {
     const fetchUserDetails = async () => {

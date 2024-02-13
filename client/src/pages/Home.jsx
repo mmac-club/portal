@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 // import { useAuth } from "../services/AuthService/AuthContext";
 // import {
 //   Flex,

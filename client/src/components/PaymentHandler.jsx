@@ -4,7 +4,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useAuth } from '../services/AuthService/AuthContext';
 
 const PaymentHandler = ({amount, selectedPlan, planFor, planStartDate, planEndDate, planType, onClose, openPaymentResponseModal}) => {
-    const API_URL = import.meta.env.VITE_API_URL_DEV;
+    const API_URL = import.meta.env.VITE_API_URL_PROD;
 
     const initialOptions = {
         "client-id": "Ab3clPu_33eKE8Fi5A29tFOyhvrVVsJdXaL4vNqIC1Mxxf7JZhcMkgZdosMzovg9_BkDIlzt-1Kq-Mwn",

@@ -108,6 +108,7 @@ export default function Navbar() {
     { link: "/", name: "Home" },
     { link: "/league-registration", name: "Membership" },
     { link: "/about", name: "About Us" },
+    { link: "/event-page", name: "Event" },
   ];
 
   const AdminLinks = [{ link: "/dashboard", name: "Dashboard" }];
@@ -163,7 +164,7 @@ export default function Navbar() {
             transform={"translateX(-50%)"}
           >
             <a href="/">
-              <img src="/logo.png" width={200}></img>
+              <img src="/MMAC_HD_Logo.jpg" width={230}></img>
             </a>
           </HStack>
           <Flex alignItems={"center"}>

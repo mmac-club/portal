@@ -11,6 +11,7 @@ import SignUp from "./pages/SignUp";
 import LeagueRegistration from "./pages/LeagueRegistration";
 import PrivateRoute from "./components/PrivateRoute";
 import About from "./pages/About";
+import EventPage from "./pages/EventPage";
 import AccountSetting from "./pages/AccountSetting";
 
 import "./App.css";
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
       <Route path="signin" element={<SignIn />} />
       <Route path="league-registration" element={<LeagueRegistration />} />
       <Route path="about" element={<About />} />
+      <Route path="event-page" element={<EventPage />} />
       {/* <Route path="account-setting" element={<PrivateRoute path="account-setting" component={AccountSetting} />} /> */}
       <Route path="account-setting" element={<AccountSetting />} />
 

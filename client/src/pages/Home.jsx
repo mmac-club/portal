@@ -108,6 +108,7 @@ export default function CallToActionWithVideo() {
         spacing={{ base: 8, md: 10 }}
         py={{ base: 20, md: 28 }}
         direction={{ base: "column", md: "row" }}
+        minH={"90vh"}
       >
         <Stack flex={1} spacing={{ base: 5, md: 10 }}>
           <Heading
@@ -147,13 +148,67 @@ export default function CallToActionWithVideo() {
           w={"full"}
         >
           <Blob
-            w={"150%"}
-            h={"150%"}
+            w={"100%"}
+            h={"100%"}
             position={"absolute"}
             top={"-20%"}
             left={0}
             zIndex={-1}
             color={useColorModeValue("purple.50")}
+          />
+          <Blob
+            w={"20%"}
+            h={"10%"}
+            position={"absolute"}
+            top={"-30%"}
+            left={0}
+            zIndex={-1}
+            color={useColorModeValue("green.50")}
+          />
+          <Blob
+            w={"80%"}
+            h={"80%"}
+            position={"absolute"}
+            top={"-30%"}
+            // left={"-100%"}
+            right={"120%"}
+            zIndex={-1}
+            color={useColorModeValue("green.50")}
+          />
+          <Blob
+            w={"80%"}
+            h={"80%"}
+            position={"absolute"}
+            top={"90%"}
+            left={"-120%"}
+            zIndex={-1}
+            color={useColorModeValue("blue.50", "blue.600")}
+          />
+          <Blob
+            w={"60%"}
+            h={"60%"}
+            position={"absolute"}
+            top={"70%"}
+            left={"-40%"}
+            zIndex={-1}
+            color={useColorModeValue("orange.50", "orange.600")}
+          />
+          <Blob
+            w={"30%"}
+            h={"30%"}
+            position={"absolute"}
+            top={"50%"}
+            right={"20%"}
+            zIndex={-1}
+            color={useColorModeValue("pink.200", "pink.600")}
+          />
+          <Blob
+            w={"40%"}
+            h={"40%"}
+            position={"absolute"}
+            top={"-10%"}
+            left={"-10%"}
+            color={useColorModeValue("teal.200", "teal.600")}
           />
           <Box
             position={"relative"}
@@ -181,7 +236,7 @@ const Blob = (props) => {
   return (
     <Icon
       width={"100%"}
-      viewBox="0 0 578 440"
+      viewBox="0 0 700 440"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}

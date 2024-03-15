@@ -15,6 +15,8 @@ import {
   Stack,
   IconButton,
   Center,
+  Spacer,
+  Image,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useAuth } from "../services/AuthService/AuthContext";
@@ -57,27 +59,27 @@ export default function Navbar() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  useEffect(() => {
-    // Check if currentUser is not undefined
-    if (currentUser) {
-      const fetchUserDetails = async () => {
-        try {
-          // Assuming userManagementService.get_user_by_id returns a Promise
-          const response = await userManagementService.get_user_by_id(
-            currentUser.uid
-          );
-          setUser(response);
-          setUserIsAdmin(response.isAdmin); // Update userIsAdmin based on fetched user details
-        } catch (error) {
-          console.error("Error fetching user details:", error);
-          // Handle error, e.g., show an error message to the user
-        }
-      };
+  // useEffect(() => {
+  //   // Check if currentUser is not undefined
+  //   if (currentUser) {
+  //     const fetchUserDetails = async () => {
+  //       try {
+  //         // Assuming userManagementService.get_user_by_id returns a Promise
+  //         const response = await userManagementService.get_user_by_id(
+  //           currentUser.uid
+  //         );
+  //         setUser(response);
+  //         setUserIsAdmin(response.isAdmin); // Update userIsAdmin based on fetched user details
+  //       } catch (error) {
+  //         console.error("Error fetching user details:", error);
+  //         // Handle error, e.g., show an error message to the user
+  //       }
+  //     };
 
-      // Call fetchUserDetails only when currentUser is defined
-      fetchUserDetails();
-    }
-  }, [currentUser]);
+  //     // Call fetchUserDetails only when currentUser is defined
+  //     fetchUserDetails();
+  //   }
+  // }, [currentUser]);
 
   async function handleLogout() {
     setError("");
@@ -106,29 +108,36 @@ export default function Navbar() {
 
   const Links = [
     { link: "/", name: "Home" },
-    { link: "/league-registration", name: "Membership" },
-    { link: "/about", name: "About Us" },
+    // { link: "/league-registration", name: "Membership" },
+    // { link: "/about", name: "About Us" },
+    { link: "/event", name: "Event" },
   ];
-
   const AdminLinks = [{ link: "/dashboard", name: "Dashboard" }];
-
-  console.log(currentUser);
   return (
     <>
       <Box
-        bg={"white"}
+        bg={"whiteAlpha.900"}
+        width={"full"}
         px={4}
-        height={"70px"}
+        height={"100px"}
         position={"sticky"}
         top={0}
-        zIndex={999}
+        style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)" }}
       >
         <Flex
-          h={16}
           alignItems={"center"}
+          height={"100px"}
           justifyContent={"space-between"}
-          height={"70px"}
         >
+          <HStack>
+            <Image
+              w={{ base: "200px", md: "300px", lg: "400px" }}
+              h="100px"
+              objectFit="contain"
+              src="./MMAC_HD_Logo.jpg"
+              alt="MMAC Logo"
+            />
+          </HStack>
           <IconButton
             size={"md"}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -157,16 +166,20 @@ export default function Navbar() {
                   ))}
             </HStack>
           </HStack>
-          <HStack
+          {/* <HStack
             position={"absolute"}
             left={"50%"}
             transform={"translateX(-50%)"}
           >
-            <a href="/">
-              <img src="/logo.png" width={200}></img>
-            </a>
-          </HStack>
-          <Flex alignItems={"center"}>
+            <Image
+              w={{ base: "200px", md: "300px", lg: "400px" }}
+              h="100px"
+              objectFit="contain"
+              src="./MMAC_HD_Logo.jpg"
+              alt="MMAC Logo"
+            />
+          </HStack> */}
+          {/* <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
               {!currentUser ? (
                 <>
@@ -254,7 +267,7 @@ export default function Navbar() {
                 </Menu>
               )}
             </Stack>
-          </Flex>
+          </Flex> */}
         </Flex>
         {isOpen ? (
           <Box

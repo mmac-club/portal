@@ -106,8 +106,8 @@ export default function Navbar() {
 
   const Links = [
     { link: "/", name: "Home" },
-    { link: "/league-registration", name: "Membership" },
-    { link: "/about", name: "About Us" },
+    // { link: "/league-registration", name: "Membership" },
+    // { link: "/about", name: "About Us" },
     { link: "/event-page", name: "Event" },
   ];
 
@@ -119,7 +119,7 @@ export default function Navbar() {
       <Box
         bg={"white"}
         px={4}
-        height={"70px"}
+        height={"120px"}
         position={"sticky"}
         top={0}
         zIndex={999}
@@ -167,8 +167,8 @@ export default function Navbar() {
               <img src="/MMAC_HD_Logo.jpg" width={230}></img>
             </a>
           </HStack>
-          <Flex alignItems={"center"}>
-            <Stack direction={"row"} spacing={7}>
+          {/* <Flex alignItems={"center"}> */}
+            {/* <Stack direction={"row"} spacing={7}>
               {!currentUser ? (
                 <>
                   <HStack
@@ -254,8 +254,8 @@ export default function Navbar() {
                   </MenuList>
                 </Menu>
               )}
-            </Stack>
-          </Flex>
+            </Stack> */}
+          {/* </Flex> */}
         </Flex>
         {isOpen ? (
           <Box

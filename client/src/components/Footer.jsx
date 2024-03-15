@@ -4,6 +4,7 @@ import {
   Box,
   chakra,
   Container,
+  Image,
   Stack,
   Text,
   useColorModeValue,
@@ -66,55 +67,25 @@ export default function Footer() {
         as={Stack}
         maxW={"6xl"}
         py={4}
+        direction={{ base: "column", md: "row" }}
         spacing={4}
-        justify={"center"}
-        align={"center"}
+        justify={{ base: "center", md: "space-between" }}
+        align={{ base: "center", md: "center" }}
       >
-        <Logo />
+        <Image alt="MMAC Logo" src="./MMAC_HD_Logo.jpg" height={"40px"} width={"120px"}></Image>
+        <Text fontFamily={"Mordern Era"} fontWeight={"medium"}>© 2024 Montreal Mynix Athletic Club</Text>
         <Stack direction={"row"} spacing={6}>
-          <Box as="a" href={"#"}>
-            Home
-          </Box>
-          <Box as="a" href={"#"}>
-            About
-          </Box>
-          <Box as="a" href={"#"}>
-            Blog
-          </Box>
-          <Box as="a" href={"#"}>
-            Contact
-          </Box>
+          <SocialButton label={"Twitter"} href={"#"}>
+            <FaTwitter />
+          </SocialButton>
+          <SocialButton label={"YouTube"} href={"#"}>
+            <FaYoutube />
+          </SocialButton>
+          <SocialButton label={"Instagram"} href={"#"}>
+            <FaInstagram />
+          </SocialButton>
         </Stack>
       </Container>
-
-      <Box
-        borderTopWidth={1}
-        borderStyle={"solid"}
-        borderColor={useColorModeValue("gray.200", "gray.700")}
-      >
-        <Container
-          as={Stack}
-          maxW={"6xl"}
-          py={4}
-          direction={{ base: "column", md: "row" }}
-          spacing={4}
-          justify={{ base: "center", md: "space-between" }}
-          align={{ base: "center", md: "center" }}
-        >
-          <Text>© 2022 Chakra Templates. All rights reserved</Text>
-          <Stack direction={"row"} spacing={6}>
-            <SocialButton label={"Twitter"} href={"#"}>
-              <FaTwitter />
-            </SocialButton>
-            <SocialButton label={"YouTube"} href={"#"}>
-              <FaYoutube />
-            </SocialButton>
-            <SocialButton label={"Instagram"} href={"#"}>
-              <FaInstagram />
-            </SocialButton>
-          </Stack>
-        </Container>
-      </Box>
     </Box>
   );
 }

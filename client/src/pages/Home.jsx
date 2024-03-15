@@ -98,137 +98,138 @@ import {
   IconButton,
   createIcon,
   useColorModeValue,
+  Divider,
+  HStack,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+
 
 export default function CallToActionWithVideo() {
+  const navigate = useNavigate();
   return (
-    <Container maxW={"7xl"}>
-      <Stack
-        align={"center"}
-        spacing={{ base: 8, md: 10 }}
-        py={{ base: 20, md: 28 }}
-        direction={{ base: "column", md: "row" }}
-        minH={"90vh"}
-      >
-        <Stack flex={1} spacing={{ base: 5, md: 10 }}>
-          <Heading
-            lineHeight={1.1}
-            fontWeight={300}
-            fontFamily={"Teimpos Headline"}
-            fontSize={{ base: "3xl", sm: "6xl", lg: "6xl" }}
-          >
-            We're MMAC
-          </Heading>
-          <Box
-            marginLeft={10}
-            fontWeight={300}
-            fontFamily={"Teimpos Headline Italics"}
-            fontSize={{ base: "xl", sm: "3xl", lg: "3xl" }}
-            lineHeight={1}
-          >
-            <Text as={"span"} position={"relative"} className="slide-up">
-              All for One,
-            </Text>
-            <br />
-            <Text
-              marginLeft={108}
-              as={"span"}
-              color={"#913a86"}
-              className="slide-down"
-            >
-              One for All
-            </Text>
-          </Box>
-        </Stack>
-        <Flex
-          flex={1}
-          justify={"center"}
+    <Box bgGradient="linear-gradient(311deg, rgba(255,255,255,1) 0%, rgba(235,234,231,1) 28%);">
+      <Container maxW={"7xl"}>
+        <Stack
           align={"center"}
-          position={"relative"}
-          w={"full"}
+          spacing={{ base: 8, md: 10 }}
+          py={{ base: 20, md: 28 }}
+          direction={{ base: "column", md: "row" }}
+          minH={"80vh"}
         >
-          <Blob
-            w={"100%"}
-            h={"100%"}
-            position={"absolute"}
-            top={"-20%"}
-            left={0}
-            zIndex={-1}
-            color={useColorModeValue("purple.50")}
-          />
-          <Blob
-            w={"20%"}
-            h={"10%"}
-            position={"absolute"}
-            top={"-30%"}
-            left={0}
-            zIndex={-1}
-            color={useColorModeValue("green.50")}
-          />
-          <Blob
-            w={"80%"}
-            h={"80%"}
-            position={"absolute"}
-            top={"-30%"}
-            // left={"-100%"}
-            right={"120%"}
-            zIndex={-1}
-            color={useColorModeValue("green.50")}
-          />
-          <Blob
-            w={"80%"}
-            h={"80%"}
-            position={"absolute"}
-            top={"90%"}
-            left={"-120%"}
-            zIndex={-1}
-            color={useColorModeValue("blue.50", "blue.600")}
-          />
-          <Blob
-            w={"60%"}
-            h={"60%"}
-            position={"absolute"}
-            top={"70%"}
-            left={"-40%"}
-            zIndex={-1}
-            color={useColorModeValue("orange.50", "orange.600")}
-          />
-          <Blob
-            w={"30%"}
-            h={"30%"}
-            position={"absolute"}
-            top={"50%"}
-            right={"20%"}
-            zIndex={-1}
-            color={useColorModeValue("pink.200", "pink.600")}
-          />
-          <Blob
-            w={"40%"}
-            h={"40%"}
-            position={"absolute"}
-            top={"-10%"}
-            left={"-10%"}
-            color={useColorModeValue("teal.200", "teal.600")}
-          />
-          <Box
-            position={"relative"}
-            height={"300px"}
-            rounded={"2xl"}
-            boxShadow={"2xl"}
-            width={"full"}
-            overflow={"hidden"}
-          >
-            <Image
-              fit={"cover"}
+          <Flex alignItems="center" justify="center">
+            <Divider borderColor="gray.500" flex="1" />
+            <Box mx={4}>
+              {" "}
+              <Heading
+                text="< my skills >"
+                color1="#008080"
+                color2="#90EE90"
+                background="#000000"
+              ></Heading>
+            </Box>
+            <Divider borderColor="gray.500" flex="1" />
+          </Flex>
+          <Stack flex={1} spacing={{ base: 5, md: 10 }}>
+            <Heading
+              lineHeight={1.1}
+              fontWeight={300}
+              letterSpacing={"-2px"}
+              fontFamily={"Teimpos Headline"}
+              fontSize={{ base: "3rem", sm: "4rem", lg: "4.625rem" }}
+            >
+              We're MMAC
+            </Heading>
+            <Box
+              marginLeft={10}
+              fontWeight={300}
+              fontFamily={"Teimpos Headline Italics"}
+              fontSize={{ base: "xl", sm: "2.625rem", lg: "3rem" }}
+              lineHeight={1}
+            >
+              <Text as={"span"} position={"relative"} className="slide-up">
+                All for One,
+              </Text>
+              <br />
+              <Text
+                marginLeft={108}
+                as={"span"}
+                color={"#913a86"}
+                className="slide-down"
+              >
+                One for All
+              </Text>
+            </Box>
+            <Stack
+              direction={{ base: "column", md: "row" }}
               align={"center"}
-              w={"100%"}
-              h={"100%"}
-              src={"./MMAC_Dashboard.jpeg"}
-            />
-          </Box>
-        </Flex>
-      </Stack>
-    </Container>
+              marginRight={{base:0, md:20}}
+              justify={"center"}
+              spacing={8}
+            >
+              <Button
+                
+                size={{base:"sm", md:"md", lg:"lg"}}
+                w={"fit-content"}
+                rounded={"full"}
+                fontFamily={"Mordern Era"}
+                fontSize={"lg"}
+                bg={"#67295F"}
+                color={"whiteAlpha.900"}
+                _hover={{
+                  color: "whiteAlpha.900",
+                  bg: "#913a86",
+                }}
+                onClick={() => navigate("/about-us")} // Navigate to "/about-us" on click
+
+              >
+                About Us
+              </Button>
+              {/* <Button
+                size={{base:"sm", md:"md", lg:"lg"}}
+                w={"fit-content"}
+                rounded={"full"}
+                fontFamily={"Mordern Era"}
+                fontSize={"lg"}
+                bg={"blackAlpha.700"}
+                color={"whiteAlpha.900"}
+                _hover={{
+                  color: "whiteAlpha.900",
+                  bg: "blackAlpha.900",
+                }}
+              >
+                Contact Us
+              </Button> */}
+            </Stack>
+          </Stack>
+          <Flex
+            flex={1}
+            justify={"center"}
+            align={"center"}
+            position={"relative"}
+            w={"full"}
+            h={"auto"}
+          >
+            <Box
+              position={"relative"}
+              height={"300px"}
+              rounded={"2xl"}
+              boxShadow={"2xl"}
+              width={"full"}
+              overflow={"hidden"}
+              zIndex={1}
+            >
+              <Image
+                fit={"cover"}
+                align={"center"}
+                w={"100%"}
+                h={"100%"}
+                src={"./MMAC_Dashboard.jpeg"}
+              />
+            </Box>
+          </Flex>
+        </Stack>
+      </Container>
+    </Box>
   );
 }
 

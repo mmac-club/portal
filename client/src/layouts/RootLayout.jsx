@@ -6,6 +6,7 @@ export default function RootLayout() {
   return (
     <div>
         <Navbar />
+        {/* <NavbarEvent></NavbarEvent> */}
         <Outlet />
         <Footer></Footer>
     </div>

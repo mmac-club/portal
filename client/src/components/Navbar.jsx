@@ -109,22 +109,18 @@ export default function Navbar() {
   const Links = [
     { link: "/", name: "Home" },
     { link: "/league-registration", name: "Membership" },
-    { link: "/about", name: "About Us" },
+    { link: "/about-us", name: "About Us" },
   ];
-
   const AdminLinks = [{ link: "/dashboard", name: "Dashboard" }];
-
-  console.log(currentUser);
   return (
     <>
       <Box
         bg={"white"}
+        width={"full"}
         px={4}
         height={"100px"}
         position={"sticky"}
-        top={0}
         zIndex={999}
-        width={"full"}
         style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)" }}
       >
         <Flex
@@ -147,7 +143,7 @@ export default function Navbar() {
             <HStack
               as={"nav"}
               spacing={4}
-              fontSize={"16px"}
+              fontSize={"20px"}
               color={"#67295F"}
               fontWeight={"600"}
             >

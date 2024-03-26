@@ -15,6 +15,7 @@ import AccountSetting from "./pages/AccountSetting";
 
 import "./App.css";
 import AdminDashboard from "./pages/AdminDashboard";
+import AboutUs from "./pages/AboutUs";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,9 +26,10 @@ const router = createBrowserRouter(
       {/* No need for empty elements */}
       <Route path="signin" element={<SignIn />} />
       <Route path="league-registration" element={<LeagueRegistration />} />
-      <Route path="about" element={<About />} />
+      {/* <Route path="about" element={<About />} /> */}
       {/* <Route path="account-setting" element={<PrivateRoute path="account-setting" component={AccountSetting} />} /> */}
       <Route path="account-setting" element={<AccountSetting />} />
+      <Route path="about-us" element={<AboutUs />} />
 
       <Route path="dashboard" element={<AdminDashboard />} />
       {/* <Route path="home" element={<Dashboard />} /> */}

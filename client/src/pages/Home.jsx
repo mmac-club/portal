@@ -98,16 +98,24 @@ import {
   IconButton,
   createIcon,
   useColorModeValue,
+  Divider,
+  HStack,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 export default function CallToActionWithVideo() {
+  const navigate = useNavigate();
+
   return (
+    <Box bgGradient="linear-gradient(311deg, rgba(255,255,255,1) 0%, rgba(235,234,231,1) 28%);">
+
     <Container maxW={"7xl"}>
       <Stack
         align={"center"}
         spacing={{ base: 8, md: 10 }}
         py={{ base: 20, md: 28 }}
         direction={{ base: "column", md: "row" }}
+        minH={"80vh"}
       >
         <Stack flex={1} spacing={{ base: 5, md: 10 }}>
           <Heading
@@ -146,15 +154,6 @@ export default function CallToActionWithVideo() {
           position={"relative"}
           w={"full"}
         >
-          <Blob
-            w={"150%"}
-            h={"150%"}
-            position={"absolute"}
-            top={"-20%"}
-            left={0}
-            zIndex={-1}
-            color={useColorModeValue("purple.50")}
-          />
           <Box
             position={"relative"}
             height={"300px"}
@@ -174,6 +173,7 @@ export default function CallToActionWithVideo() {
         </Flex>
       </Stack>
     </Container>
+    </Box>
   );
 }
 

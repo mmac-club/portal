@@ -15,6 +15,8 @@ import {
   Stack,
   IconButton,
   Center,
+  Spacer,
+  Image,
 } from "@chakra-ui/react";
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useAuth } from "../services/AuthService/AuthContext";
@@ -118,16 +120,17 @@ export default function Navbar() {
       <Box
         bg={"white"}
         px={4}
-        height={"70px"}
+        height={"100px"}
         position={"sticky"}
         top={0}
         zIndex={999}
+        width={"full"}
+        style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)" }}
       >
         <Flex
-          h={16}
+          height={"100px"}
           alignItems={"center"}
           justifyContent={"space-between"}
-          height={"70px"}
         >
           <IconButton
             size={"md"}
@@ -162,9 +165,13 @@ export default function Navbar() {
             left={"50%"}
             transform={"translateX(-50%)"}
           >
-            <a href="/">
-              <img src="/logo.png" width={200}></img>
-            </a>
+            <Image
+              w={{ base: "200px", md: "300px", lg: "400px" }}
+              h="100px"
+              objectFit="contain"
+              src="./MMAC_HD_Logo.jpg"
+              alt="MMAC Logo"
+            />
           </HStack>
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
@@ -173,7 +180,7 @@ export default function Navbar() {
                   <HStack
                     as={"nav"}
                     spacing={1}
-                    fontSize={"16px"}
+                    fontSize={"20px"}
                     color={"#09356b"}
                     fontWeight={"600"}
                   >

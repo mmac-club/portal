@@ -67,17 +67,20 @@ const Plan = ({
   return (
     <Card
       m={{ base: 4, md: 2 }}
-      border={"2px solid white"}
-      cursor={"pointer"}
+      border={"1px solid purple"}
       _hover={{
-        border: "2px solid #09356b",
+        transform: "scale(1.03)", // Increase the scale factor as needed
+        transition: "transform 0.3s ease-in-out",
       }}
-      bg={"#F5F5DC"}
+      bg={"purple.50"}
+      rounded={"2xl"}
     >
       <CardHeader>
         <Heading
-          style={{ color: "#1A1A1A" }} // Set the font color here
+          style={{ color: "#1A1A1A" }}
+          fontFamily={"Teimpos Headline"} // Set the font color here
           fontSize={"2rem"}
+          fontWeight={300}
           textAlign={"center"}
         >
           {" "}
@@ -108,22 +111,24 @@ const Plan = ({
       </CardBody>
       <CardFooter justifyContent={"center"}>
         <Button
-          color={"#09356b"}
-          background={"white"}
+          color={"white"}
+          background={"#67295F"}
           cursor={"pointer"}
-          border={"2px solid #09356b"}
+          rounded={"3xl"}
+          w={"full"}
+        //   border={"2px solid #09356b"}
           _hover={{
             textDecoration: "none",
-            bg: "#09356b",
+            bg: "#4C1C46",
             color: "white",
-            transition: "all 0.5s ease",
+            transition: "all  ease",
           }}
           onClick={function (event) {
             onOpen();
             changePlan(index);
           }}
         >
-          Select Plan
+          Get {type}
         </Button>
       </CardFooter>
     </Card>

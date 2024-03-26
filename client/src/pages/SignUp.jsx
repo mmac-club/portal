@@ -181,8 +181,9 @@ export default function SignUp() {
         <Stack spacing={4} h={"full"} w={"full"} maxW={"xl"}>
           <Box borderRadius={"md"}>
             <Heading
+              fontFamily={'Teimpos Headline'}
               textAlign={"center"}
-              fontWeight={"semibold"}
+              fontWeight={300}
               fontSize={"3rem"}
             >
               Sign Up
@@ -413,12 +414,12 @@ export default function SignUp() {
               type="submit"
               onClick={handleSubmit}
             >
-              Sign up
+              Sign Up
             </Button>
             <Text align={"center"}>
               Already a user?{" "}
               <Link to="/signin" style={{ color: "#67295F" }}>
-                Login
+                Log In
               </Link>{" "}
             </Text>
           </Stack>

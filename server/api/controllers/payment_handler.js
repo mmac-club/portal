@@ -35,10 +35,10 @@ const generateAccessToken = async () => {
 
 const createOrder = async (cart) => {
     // use the cart information passed from the front-end to calculate the purchase unit details
-  console.log(
-    "shopping cart information passed from the frontend createOrder() callback:",
-    cart,
-  );
+  // console.log(
+  //   "shopping cart information passed from the frontend createOrder() callback:",
+  //   cart,
+  // );
 
   const accessToken = await generateAccessToken();
   const url = `${base}/v2/checkout/orders`;
@@ -76,10 +76,10 @@ const createOrder = async (cart) => {
  * @see https://developer.paypal.com/docs/api/orders/v2/#orders_capture
  */
 const captureOrder = async (orderID) => {
-  console.log(orderID)
+  // console.log(orderID)
   const accessToken = await generateAccessToken();
   const url = `${base}/v2/checkout/orders/${orderID}/capture`;
-  console.log(url)
+  // console.log(url)
 
   const response = await fetch(url, {
     method: "POST",
@@ -100,7 +100,7 @@ export const order = async (req, res, next) => {
   try {
     // use the cart information passed from the front-end to calculate the order amount detals.
     const { cart } = req.body;
-    console.log(cart)
+    // console.log(cart)
     const { jsonResponse, httpStatusCode } = await createOrder(cart);
     res.status(httpStatusCode).json(jsonResponse);
   } catch (error) {
@@ -113,11 +113,22 @@ export const capture = async (req, res, next) => {
   try {
     const orderID  = req.params.id;
     const params = req.body.cart[0];
+    console.log(params)
     const { jsonResponse, httpStatusCode } = await captureOrder(orderID);
+    console.log(jsonResponse)
     const payResponse = await createPayment({
-      userId: params.userId,
+      uid: params.userId,
+      paypal_payer_id: jsonResponse.payer.payer_id,
       transactionId: jsonResponse.id || jsonResponse.debug_id,
-      transactionStatus: jsonResponse.status || jsonResponse.name
+      transactionStatus: jsonResponse.status || jsonResponse.name,
+      planFor: params.planFor,
+      planType: params.planType,
+      planStartDate: params.planStartDate,
+      planEndDate: params.planEndDate,
+      planPrice: params.amount,
+      payerEmail: jsonResponse.payer.email_address,
+      payerFullName: jsonResponse.purchase_units[0].shipping.name.full_name,
+      payerBillingAddress: jsonResponse.purchase_units[0].shipping.address
     })
     res.status(httpStatusCode).json(jsonResponse);
   } catch (error) {
@@ -128,15 +139,12 @@ export const capture = async (req, res, next) => {
   
 async function handleResponse(response) {
   try {
-
     const jsonResponse = await response.json();
-    console.log(jsonResponse)
     return {
       jsonResponse,
       httpStatusCode: response.status,
     };
   } catch (err) {
-
     console.log(err)
     const errorMessage = await response.text();
     throw new Error(errorMessage);
@@ -152,5 +160,32 @@ export const createPayment = async (paymentData) => {
   }
   catch(error) {
       console.log("Problem with adding payment")
+  }
+}
+
+export const get_membership_details_by_id = async (req, res, next) => {
+  try {
+      const firebase_uid  = req.params.id;
+      const user = await Payment.find({ uid : firebase_uid });
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+      res.status(200).json(user);
+  } 
+  catch (error) {
+      next(error);
+  }
+}
+
+export const get_all_membership = async (req, res, next) => {
+  try {
+      const user = await Payment.find();
+      if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+      }
+      res.status(200).json(user);
+  } 
+  catch (error) {
+      next(error);
   }
 }
